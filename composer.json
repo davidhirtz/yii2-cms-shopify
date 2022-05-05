@@ -1,0 +1,25 @@
+{
+  "name": "davidhirtz/yii2-cms-shopify",
+  "type": "yii2-extension",
+  "description": "Yii2 Shopify extension for CMS module",
+  "homepage": "https://www.davidhirtz.com/",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "davidhirtz/yii2-shopify": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "davidhirtz\\yii2\\cms\\shopify\\": ""
+    }
+  },
+  "extra": {
+    "bootstrap": "davidhirtz\\yii2\\cms\\shopify\\composer\\Bootstrap"
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git@github.com:davidhirtz/yii2-cms-shopify.git"
+    }
+  ]
+}
