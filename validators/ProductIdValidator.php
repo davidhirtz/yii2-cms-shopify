@@ -3,6 +3,7 @@
 namespace davidhirtz\yii2\cms\shopify\validators;
 
 use davidhirtz\yii2\cms\models\Entry;
+use davidhirtz\yii2\cms\shopify\behaviors\EntryProductBehavior;
 use davidhirtz\yii2\shopify\models\Product;
 use Yii;
 use yii\base\NotSupportedException;
@@ -10,7 +11,7 @@ use yii\validators\Validator;
 
 /**
  * ProductIdValidator validates the entry's `product_id`. The validator is automatically added to the model's validators
- * via {@link Entry::getValidators()}.
+ * by {@see EntryProductBehavior}.
  */
 class ProductIdValidator extends Validator
 {
@@ -20,7 +21,7 @@ class ProductIdValidator extends Validator
     public $attributes = ['product_id'];
 
     /**
-     * Typecasts attribute and validates relation.
+     * Validates the `product_id`.
      *
      * @param Entry $model
      * @param string $attribute

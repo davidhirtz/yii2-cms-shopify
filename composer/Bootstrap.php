@@ -6,7 +6,7 @@ use davidhirtz\yii2\cms\models\Entry;
 use davidhirtz\yii2\cms\modules\admin\widgets\forms\EntryActiveForm;
 use davidhirtz\yii2\cms\shopify\behaviors\EntryProductBehavior;
 use davidhirtz\yii2\cms\shopify\behaviors\ProductEntryBehavior;
-use davidhirtz\yii2\cms\shopify\widgets\forms\ProductIdFieldTrait;
+use davidhirtz\yii2\cms\shopify\widgets\forms\ProductIdFieldBehavior;
 use davidhirtz\yii2\shopify\models\Product;
 use davidhirtz\yii2\skeleton\web\Application;
 use yii\base\BootstrapInterface;
@@ -33,6 +33,12 @@ class Bootstrap implements BootstrapInterface
             /** @var Product $product */
             $product = $event->sender;
             $product->attachBehavior('ProductEntryBehavior', ProductEntryBehavior::class);
+        });
+
+        Event::on(EntryActiveForm::class, EntryActiveForm::EVENT_INIT, function (Event $event) {
+            /** @var EntryActiveForm $form */
+            $form = $event->sender;
+            $form->attachBehavior('ProductIdFieldBehavior', ProductIdFieldBehavior::class);
         });
 
         $app->setMigrationNamespace('davidhirtz\yii2\cms\shopify\migrations');

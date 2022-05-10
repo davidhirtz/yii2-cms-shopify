@@ -7,6 +7,9 @@ use davidhirtz\yii2\cms\shopify\validators\ProductIdValidator;
 use yii\base\Behavior;
 
 /**
+ * EntryProductBehavior extends {@see Entry} by providing 'product_id` validation. This behavior is attached on
+ * bootstrap by {@see Bootstrap}.
+ *
  * @property Entry $owner
  */
 class EntryProductBehavior extends Behavior
