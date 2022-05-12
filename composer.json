@@ -16,11 +16,5 @@
   },
   "extra": {
     "bootstrap": "davidhirtz\\yii2\\cms\\shopify\\composer\\Bootstrap"
-  },
-  "repositories": [
-    {
-      "type": "git",
-      "url": "git@github.com:davidhirtz/yii2-cms-shopify.git"
-    }
-  ]
+  }
 }
