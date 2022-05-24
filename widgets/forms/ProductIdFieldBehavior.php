@@ -49,7 +49,7 @@ class ProductIdFieldBehavior extends Behavior
 
         $products = Product::find()
             ->select(['id', 'status', 'name'])
-            ->filterWhere(['!=', 'id', $takenProductIds])
+            ->filterWhere(['not in', 'id', $takenProductIds])
             ->orderBy(['name' => SORT_ASC])
             ->all();
 
