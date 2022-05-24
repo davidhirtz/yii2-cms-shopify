@@ -3,6 +3,7 @@
 namespace davidhirtz\yii2\cms\shopify\behaviors;
 
 use davidhirtz\yii2\cms\models\Entry;
+use davidhirtz\yii2\cms\models\queries\EntryQuery;
 use davidhirtz\yii2\cms\shopify\composer\Bootstrap;
 use davidhirtz\yii2\shopify\models\Product;
 use yii\base\Behavior;
@@ -34,5 +35,14 @@ class ProductEntryBehavior extends Behavior
             $entry->status = Entry::STATUS_DISABLED;
             $entry->update();
         }
+    }
+
+    /**
+     * @return EntryQuery
+     */
+    public function getEntry()
+    {
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
+        return $this->owner->hasOne(Entry::class, ['id' => 'product_id']);
     }
 }
