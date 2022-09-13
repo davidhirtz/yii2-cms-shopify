@@ -2,10 +2,12 @@
 
 namespace davidhirtz\yii2\cms\shopify\behaviors;
 
+use davidhirtz\yii2\cms\models\base\ModelCloneEvent;
 use davidhirtz\yii2\cms\models\Entry;
 use davidhirtz\yii2\cms\shopify\validators\ProductIdValidator;
 use davidhirtz\yii2\shopify\models\Product;
 use davidhirtz\yii2\shopify\models\queries\ProductQuery;
+use Yii;
 use yii\base\Behavior;
 
 /**
@@ -23,6 +25,7 @@ class EntryProductBehavior extends Behavior
     {
         return [
             Entry::EVENT_CREATE_VALIDATORS => 'onCreateValidators',
+            Entry::EVENT_BEFORE_CLONE => 'onBeforeClone'
         ];
     }
 
@@ -32,6 +35,16 @@ class EntryProductBehavior extends Behavior
     public function onCreateValidators()
     {
         $this->owner->getValidators()->append(new ProductIdValidator());
+    }
+
+    /**
+     * @param ModelCloneEvent $event
+     * @return void
+     */
+    public function onBeforeClone($event)
+    {
+        Yii::debug('Setting product_id to null on cloned entry.', __METHOD__);
+        $event->clone->setAttribute('product_id', null);
     }
 
     /**
