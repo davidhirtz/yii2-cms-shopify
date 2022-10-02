@@ -2,11 +2,11 @@
 
 namespace davidhirtz\yii2\cms\shopify\widgets\grid\columns;
 
+use davidhirtz\yii2\cms\models\base\ActiveRecord;
 use davidhirtz\yii2\cms\modules\admin\widgets\grid\EntryGridView;
 use davidhirtz\yii2\shopify\models\Product;
 use davidhirtz\yii2\skeleton\helpers\Html;
 use Yii;
-use yii\db\ActiveRecord;
 use yii\grid\DataColumn;
 
 /**
@@ -20,6 +20,11 @@ class ProductIdColumn extends DataColumn
      * @var string
      */
     public $attribute = 'product_id';
+
+    /**
+     * @var bool whether mismatching product URLs should be marked with a marking
+     */
+    public $validateProductSlug = true;
 
     /**
      * @var Product[]
@@ -47,10 +52,24 @@ class ProductIdColumn extends DataColumn
     protected function renderDataCellContent($model, $key, $index)
     {
         if ($product = ($this->getProducts()[$model->getAttribute($this->attribute)] ?? null)) {
-            $name = $product->status == $model->getAttribute('status') ? $product->name : Html::iconText($product->getStatusIcon(), $product->name, [
-                'title' => $product->getStatusName(),
-                'data-toggle' => 'tooltip',
-            ]);
+            if ($product->status == $model->getAttribute('status')) {
+                if ($this->validateProductSlug && $product->slug != $model->getI18nAttribute('slug')) {
+                    $name = Html::iconText('exclamation-triangle', $product->name, [
+                        'title' => Yii::t('yii', '{attribute} must be equal to "{compareValueOrAttribute}".', [
+                            'attribute' => $model->getAttributeLabel('slug'),
+                            'compareValueOrAttribute' => $product->slug,
+                        ]),
+                        'data-toggle' => 'tooltip',
+                    ]);
+                } else {
+                    $name = $product->name;
+                }
+            } else {
+                $name = $product->status == $model->getAttribute('status') ? $product->name : Html::iconText($product->getStatusIcon(), $product->name, [
+                    'title' => $product->getStatusName(),
+                    'data-toggle' => 'tooltip',
+                ]);
+            }
 
             return Html::a($name, $product->getAdminRoute());
         }
@@ -75,7 +94,7 @@ class ProductIdColumn extends DataColumn
 
             if ($productIds) {
                 static::$_products = Product::find()
-                    ->select(['id', 'status', 'name'])
+                    ->select(['id', 'status', 'name', 'slug'])
                     ->andWhere(['id' => $productIds])
                     ->indexBy('id')
                     ->all();
