@@ -18,9 +18,6 @@ use yii\base\Behavior;
  */
 class EntryProductBehavior extends Behavior
 {
-    /**
-     * @return string[]
-     */
     public function events(): array
     {
         return [
@@ -29,28 +26,21 @@ class EntryProductBehavior extends Behavior
         ];
     }
 
-    /**
-     * @return void
-     */
-    public function onCreateValidators()
+    public function onCreateValidators(): void
     {
         $this->owner->getValidators()->append(new ProductIdValidator());
     }
 
     /**
      * @param ModelCloneEvent $event
-     * @return void
      */
-    public function onBeforeClone($event)
+    public function onBeforeClone($event): void
     {
         Yii::debug('Setting product_id to null on cloned entry.', __METHOD__);
         $event->clone->setAttribute('product_id', null);
     }
 
-    /**
-     * @return ProductQuery
-     */
-    public function getProduct()
+    public function getProduct(): ProductQuery
     {
         /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $this->owner->hasOne(Product::class, ['id' => 'product_id']);
