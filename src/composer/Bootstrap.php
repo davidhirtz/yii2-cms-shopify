@@ -12,16 +12,12 @@ use davidhirtz\yii2\skeleton\web\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Event;
 
-/**
- * Class Bootstrap
- * @package davidhirtz\yii2\cms\shopify\bootstrap
- */
 class Bootstrap implements BootstrapInterface
 {
     /**
      * @param Application $app
      */
-    public function bootstrap($app)
+    public function bootstrap($app): void
     {
         Event::on(Entry::class, Entry::EVENT_INIT, function (Event $event) {
             /** @var Entry $entry */

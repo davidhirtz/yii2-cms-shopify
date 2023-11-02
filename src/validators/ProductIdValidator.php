@@ -16,17 +16,14 @@ use yii\validators\Validator;
 class ProductIdValidator extends Validator
 {
     /**
-     * @var array|string defaults to `product_id`
+     * @var array|string
      */
     public $attributes = ['product_id'];
 
     /**
-     * Validates the `product_id`.
-     *
      * @param Entry $model
-     * @param string $attribute
      */
-    public function validateAttribute($model, $attribute)
+    public function validateAttribute($model, $attribute): void
     {
         if ($model->isAttributeChanged($attribute)) {
             $productId = $model->getAttribute($attribute);
@@ -49,10 +46,7 @@ class ProductIdValidator extends Validator
         }
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function validate($value, &$error = null)
+    public function validate($value, &$error = null): bool
     {
         throw new NotSupportedException(get_class($this) . ' does not support validate().');
     }

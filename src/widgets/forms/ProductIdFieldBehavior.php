@@ -14,38 +14,39 @@ use yii\widgets\ActiveField;
  * ProductIdFieldBehavior extends {@see EntryActiveForm} to add a product select field. It only shows products that
  * are not already linked to another entry.  This behavior is attached on startup by {@see Bootstrap}.
  *
+ * All methods can be overridden in the form class to customize the behavior.
+ *
  * @property EntryActiveForm $owner
  */
 class ProductIdFieldBehavior extends Behavior
 {
     /**
-     * @var string|array|null set to `null` to require product selection, defaults to empty first option
+     * @var string|array|null set to `null` to require product selection, defaults to empty for the first option
      */
-    public $productIdPrompt = '';
+    public string|array|null $productIdPrompt = '';
 
-    /**
-     * @param array $options
-     * @return ActiveField|string
-     */
-    public function productIdField($options = [])
+    public function productIdField(array $options = []): ActiveField|string
     {
-        /** @noinspection PhpUndefinedMethodInspection */
-        if (count($items = $this->owner->getProductIdItems())) {
+        /** @var static $form */
+        $form = $this->owner;
+
+        if (count($items = $form->getProductIdItems())) {
             return $this->owner->field($this->owner->model, 'product_id', $options)
                 ->label(Yii::t('shopify', 'Product'))
-                ->dropdownList($items, ['prompt' => $this->productIdPrompt]);
+                ->dropdownList($items, ['prompt' => $form->productIdPrompt]);
         }
 
         return '';
     }
 
     /**
-     * @return array
+     * @see static::productIdField()
      */
     public function getProductIdItems(): array
     {
-        /** @noinspection PhpUndefinedMethodInspection */
-        $takenProductIds = $this->owner->getTakenProductIds();
+        /** @var static $form */
+        $form = $this->owner;
+        $takenProductIds = $form->getTakenProductIds();
 
         $products = Product::find()
             ->select(['id', 'status', 'name'])
@@ -56,16 +57,15 @@ class ProductIdFieldBehavior extends Behavior
         $items = [];
 
         foreach ($products as $product) {
-            $items[$product->id] = !$product->isEnabled() ? ('[' . $product->getStatusName() . "] {$product->name}") : $product->name;
+            $items[$product->id] = !$product->isEnabled()
+                ? ('[' . $product->getStatusName() . "] $product->name")
+                : $product->name;
         }
 
         return $items;
     }
 
-    /**
-     * @return array
-     */
-    public function getTakenProductIds()
+    public function getTakenProductIds(): array
     {
         return Entry::find()
             ->select('product_id')

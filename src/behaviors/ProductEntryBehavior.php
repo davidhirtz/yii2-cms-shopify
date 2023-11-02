@@ -3,7 +3,7 @@
 namespace davidhirtz\yii2\cms\shopify\behaviors;
 
 use davidhirtz\yii2\cms\models\Entry;
-use davidhirtz\yii2\cms\models\queries\EntryQuery;
+use davidhirtz\yii2\cms\models\traits\EntryRelationTrait;
 use davidhirtz\yii2\cms\Module;
 use davidhirtz\yii2\cms\shopify\composer\Bootstrap;
 use davidhirtz\yii2\shopify\models\Product;
@@ -11,19 +11,21 @@ use Yii;
 use yii\base\Behavior;
 
 /**
- * ProductEntryBehavior extends {@see Product} by updating related entries on delete. This behavior is attached on
+ * ProductEntryBehavior extends {@see Product} by updating related entries on deletion. This behavior is attached on
  * bootstrap by {@see Bootstrap}.
  *
  * @property Product $owner
  */
 class ProductEntryBehavior extends Behavior
 {
+    use EntryRelationTrait;
+
     public function events(): array
     {
         return [
-            Product::EVENT_AFTER_INSERT => 'onAfterSave',
-            Product::EVENT_AFTER_UPDATE => 'onAfterSave',
-            Product::EVENT_BEFORE_DELETE => 'onBeforeDelete',
+            Product::EVENT_AFTER_INSERT => $this->onAfterSave(...),
+            Product::EVENT_AFTER_UPDATE => $this->onAfterSave(...),
+            Product::EVENT_BEFORE_DELETE => $this->onBeforeDelete(...),
         ];
     }
 
@@ -40,11 +42,5 @@ class ProductEntryBehavior extends Behavior
             $entry->status = Entry::STATUS_DISABLED;
             $entry->update();
         }
-    }
-
-    public function getEntry(): EntryQuery
-    {
-        /** @noinspection PhpIncompatibleReturnTypeInspection */
-        return $this->owner->hasOne(Entry::class, ['id' => 'product_id']);
     }
 }

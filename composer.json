@@ -6,11 +6,11 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "davidhirtz/yii2-shopify": "^1.1.7"
+    "davidhirtz/yii2-shopify": "^2.0"
   },
   "autoload": {
     "psr-4": {
-      "davidhirtz\\yii2\\cms\\shopify\\": ""
+      "davidhirtz\\yii2\\cms\\shopify\\": "src"
     }
   },
   "extra": {
