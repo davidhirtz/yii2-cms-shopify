@@ -2,17 +2,17 @@
 
 namespace davidhirtz\yii2\cms\shopify\widgets\grid\columns;
 
-use davidhirtz\yii2\cms\models\base\ActiveRecord;
-use davidhirtz\yii2\cms\modules\admin\widgets\grid\EntryGridView;
+use davidhirtz\yii2\cms\models\ActiveRecord;
+use davidhirtz\yii2\cms\modules\admin\widgets\grids\EntryGridView;
 use davidhirtz\yii2\shopify\models\Product;
 use davidhirtz\yii2\skeleton\helpers\Html;
 use Yii;
 use yii\grid\DataColumn;
 
 /**
- * ProductIdColumn can be implemented by {@see EntryGridView} to add a product column.
+ * ProductIdColumn can be implemented by {@see \davidhirtz\yii2\cms\modules\admin\widgets\grids\EntryGridView} to add a product column.
  *
- * @property EntryGridView $grid
+ * @property \davidhirtz\yii2\cms\modules\admin\widgets\grids\EntryGridView $grid
  */
 class ProductIdColumn extends DataColumn
 {
@@ -44,7 +44,7 @@ class ProductIdColumn extends DataColumn
     }
 
     /**
-     * @param ActiveRecord $model
+     * @param \davidhirtz\yii2\cms\models\ActiveRecord $model
      * @param string $key
      * @param int $index
      * @return string

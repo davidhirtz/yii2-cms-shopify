@@ -2,7 +2,7 @@
 
 namespace davidhirtz\yii2\cms\shopify\behaviors;
 
-use davidhirtz\yii2\cms\models\base\ModelCloneEvent;
+use davidhirtz\yii2\cms\models\ModelCloneEvent;
 use davidhirtz\yii2\cms\models\Entry;
 use davidhirtz\yii2\cms\shopify\validators\ProductIdValidator;
 use davidhirtz\yii2\shopify\models\Product;
