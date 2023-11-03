@@ -33,7 +33,7 @@ class ProductIdFieldBehavior extends Behavior
         if (count($items = $form->getProductIdItems())) {
             return $this->owner->field($this->owner->model, 'product_id', $options)
                 ->label(Yii::t('shopify', 'Product'))
-                ->dropdownList($items, ['prompt' => $form->productIdPrompt]);
+                ->dropDownList($items, ['prompt' => $form->productIdPrompt]);
         }
 
         return '';
