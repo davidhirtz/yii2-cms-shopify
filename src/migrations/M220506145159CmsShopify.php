@@ -4,7 +4,7 @@ namespace davidhirtz\yii2\cms\shopify\migrations;
 
 use davidhirtz\yii2\cms\models\Entry;
 use davidhirtz\yii2\shopify\models\Product;
-use davidhirtz\yii2\skeleton\db\MigrationTrait;
+use davidhirtz\yii2\skeleton\db\traits\MigrationTrait;
 use yii\db\Migration;
 
 /**
