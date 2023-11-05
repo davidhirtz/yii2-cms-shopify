@@ -1,6 +1,6 @@
 <?php
 
-namespace davidhirtz\yii2\cms\shopify\composer;
+namespace davidhirtz\yii2\cms\shopify;
 
 use davidhirtz\yii2\cms\models\Entry;
 use davidhirtz\yii2\cms\modules\admin\widgets\forms\EntryActiveForm;

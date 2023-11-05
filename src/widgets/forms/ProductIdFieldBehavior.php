@@ -4,7 +4,7 @@ namespace davidhirtz\yii2\cms\shopify\widgets\forms;
 
 use davidhirtz\yii2\cms\models\Entry;
 use davidhirtz\yii2\cms\modules\admin\widgets\forms\EntryActiveForm;
-use davidhirtz\yii2\cms\shopify\composer\Bootstrap;
+use davidhirtz\yii2\cms\shopify\Bootstrap;
 use davidhirtz\yii2\shopify\models\Product;
 use Yii;
 use yii\base\Behavior;
