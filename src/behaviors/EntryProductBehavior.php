@@ -3,7 +3,8 @@
 namespace davidhirtz\yii2\cms\shopify\behaviors;
 
 use davidhirtz\yii2\cms\Bootstrap;
-use davidhirtz\yii2\cms\models\ModelCloneEvent;
+use davidhirtz\yii2\skeleton\models\actions\DuplicateActiveRecord;
+use davidhirtz\yii2\skeleton\models\events\DuplicateActiveRecordEvent;
 use davidhirtz\yii2\cms\models\Entry;
 use davidhirtz\yii2\cms\shopify\validators\ProductIdValidator;
 use davidhirtz\yii2\shopify\models\traits\ProductRelationTrait;
@@ -24,7 +25,7 @@ class EntryProductBehavior extends Behavior
     {
         return [
             Entry::EVENT_CREATE_VALIDATORS => $this->onCreateValidators(...),
-            Entry::EVENT_BEFORE_CLONE => $this->onBeforeClone(...),
+            DuplicateActiveRecord::EVENT_BEFORE_DUPLICATE => $this->onBeforeClone(...),
         ];
     }
 
@@ -33,9 +34,11 @@ class EntryProductBehavior extends Behavior
         $this->owner->getValidators()->append(new ProductIdValidator());
     }
 
-    public function onBeforeClone(ModelCloneEvent $event): void
+    public function onBeforeClone(DuplicateActiveRecordEvent $event): void
     {
-        Yii::debug('Setting product_id to null on cloned entry.', __METHOD__);
-        $event->clone->setAttribute('product_id', null);
+        if ($event->duplicate->getAttribute('product_id')) {
+            Yii::debug('Removing product_id before duplicating entry.', __METHOD__);
+            $event->duplicate->setAttribute('product_id', null);
+        }
     }
 }
