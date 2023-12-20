@@ -2,7 +2,7 @@
 
 - Added Codeception test suite
 - Added GitHub Actions CI workflow
-- 
+
 ## 2.0.1 (Nov 6, 2023)
 
 -Moved `Bootstrap` class to base package namespace for consistency

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "255d73fdea22fb1c91bc4f36562ce023",
+    "content-hash": "1046b9006a3f63bd051a4f10b312bebc",
     "packages": [
         {
             "name": "bower-asset/jquery",
@@ -111,7 +111,7 @@
         },
         {
             "name": "davidhirtz/yii2-cms",
-            "version": "dev-dev",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davidhirtz/yii2-cms.git",
@@ -162,7 +162,7 @@
             "homepage": "https://www.github.com/davidhirtz/yii2-cms",
             "support": {
                 "issues": "https://github.com/davidhirtz/yii2-cms/issues",
-                "source": "https://github.com/davidhirtz/yii2-cms/tree/dev"
+                "source": "https://github.com/davidhirtz/yii2-cms/tree/v2.1.0"
             },
             "time": "2023-12-19T15:28:36+00:00"
         },
@@ -213,20 +213,20 @@
         },
         {
             "name": "davidhirtz/yii2-media",
-            "version": "v2.1.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davidhirtz/yii2-media.git",
-                "reference": "4d8a267231c9683b5d752322f802e5492665884b"
+                "reference": "65246f1ae7aa705aa9f7b07ce7bc39243e46e7a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davidhirtz/yii2-media/zipball/4d8a267231c9683b5d752322f802e5492665884b",
-                "reference": "4d8a267231c9683b5d752322f802e5492665884b",
+                "url": "https://api.github.com/repos/davidhirtz/yii2-media/zipball/65246f1ae7aa705aa9f7b07ce7bc39243e46e7a1",
+                "reference": "65246f1ae7aa705aa9f7b07ce7bc39243e46e7a1",
                 "shasum": ""
             },
             "require": {
-                "davidhirtz/yii2-skeleton": "^2.1.2",
+                "davidhirtz/yii2-skeleton": "^2.1.4",
                 "npm-asset/cropperjs": "^1.5"
             },
             "require-dev": {
@@ -265,22 +265,22 @@
             "homepage": "https://www.github.com/davidhirtz/yii2-media",
             "support": {
                 "issues": "https://github.com/davidhirtz/yii2-media/issues",
-                "source": "https://github.com/davidhirtz/yii2-media/tree/v2.1.1"
+                "source": "https://github.com/davidhirtz/yii2-media/tree/v2.1.2"
             },
-            "time": "2023-12-19T10:36:02+00:00"
+            "time": "2023-12-20T15:23:25+00:00"
         },
         {
             "name": "davidhirtz/yii2-shopify",
-            "version": "dev-dev",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davidhirtz/yii2-shopify.git",
-                "reference": "83b69c7705a1000181745f93135179a033a05293"
+                "reference": "7535304c6cc4083979992b99f819778e003a449e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davidhirtz/yii2-shopify/zipball/83b69c7705a1000181745f93135179a033a05293",
-                "reference": "83b69c7705a1000181745f93135179a033a05293",
+                "url": "https://api.github.com/repos/davidhirtz/yii2-shopify/zipball/7535304c6cc4083979992b99f819778e003a449e",
+                "reference": "7535304c6cc4083979992b99f819778e003a449e",
                 "shasum": ""
             },
             "require": {
@@ -322,22 +322,22 @@
             "homepage": "https://www.github.com/davidhirtz/yii2-shopify",
             "support": {
                 "issues": "https://github.com/davidhirtz/yii2-shopify/issues",
-                "source": "https://github.com/davidhirtz/yii2-shopify/tree/dev"
+                "source": "https://github.com/davidhirtz/yii2-shopify/tree/v2.1.0"
             },
-            "time": "2023-12-20T15:02:30+00:00"
+            "time": "2023-12-20T15:30:07+00:00"
         },
         {
             "name": "davidhirtz/yii2-skeleton",
-            "version": "v2.1.3",
+            "version": "v2.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davidhirtz/yii2-skeleton.git",
-                "reference": "3cee37d4d0bd338915da00fbda6e0f0d996336b9"
+                "reference": "8122d9551e6f93879d2c8f21f913afc3c563a0df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davidhirtz/yii2-skeleton/zipball/3cee37d4d0bd338915da00fbda6e0f0d996336b9",
-                "reference": "3cee37d4d0bd338915da00fbda6e0f0d996336b9",
+                "url": "https://api.github.com/repos/davidhirtz/yii2-skeleton/zipball/8122d9551e6f93879d2c8f21f913afc3c563a0df",
+                "reference": "8122d9551e6f93879d2c8f21f913afc3c563a0df",
                 "shasum": ""
             },
             "require": {
@@ -401,9 +401,9 @@
             "homepage": "https://www.github.com/davidhirtz/yii2-skeleton",
             "support": {
                 "issues": "https://github.com/davidhirtz/yii2-skeleton/issues",
-                "source": "https://github.com/davidhirtz/yii2-skeleton/tree/v2.1.3"
+                "source": "https://github.com/davidhirtz/yii2-skeleton/tree/v2.1.4"
             },
-            "time": "2023-12-19T15:03:20+00:00"
+            "time": "2023-12-20T15:21:02+00:00"
         },
         {
             "name": "davidhirtz/yii2-timeago",
@@ -7090,10 +7090,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "davidhirtz/yii2-cms": 20,
-        "davidhirtz/yii2-shopify": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
