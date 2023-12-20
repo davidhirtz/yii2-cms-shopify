@@ -27,7 +27,7 @@ class ProductIdColumn extends DataColumn
      */
     public bool $validateProductSlug = true;
 
-    private static ?array $_products = null;
+    protected static ?array $_products = null;
 
     /**
      * Only show products if any are loaded on the page.
