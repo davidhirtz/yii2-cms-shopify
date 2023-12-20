@@ -10,10 +10,7 @@ use Yii;
 use yii\grid\DataColumn;
 
 /**
- * ProductIdColumn can be implemented by {@see EntryGridView} to add a product column.
- *
  * @property EntryGridView $grid
- * @noinspection PhpUnused
  */
 class ProductIdColumn extends DataColumn
 {
@@ -29,9 +26,6 @@ class ProductIdColumn extends DataColumn
 
     protected static ?array $_products = null;
 
-    /**
-     * Only show products if any are loaded on the page.
-     */
     public function init(): void
     {
         $this->label ??= Yii::t('shopify', 'Product');
@@ -72,7 +66,9 @@ class ProductIdColumn extends DataColumn
         ]);
     }
 
-    /** @noinspection PhpUnusedParameterInspection */
+    /**
+     * @noinspection PhpUnusedParameterInspection
+     */
     protected function getNameWithStatusIcon(ActiveRecord $model, Product $product): string
     {
         return Html::iconText($product->getStatusIcon(), Html::encode($product->name), [

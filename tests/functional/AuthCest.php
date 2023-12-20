@@ -6,11 +6,11 @@
 
 namespace davidhirtz\yii2\cms\shopify\tests\functional;
 
+use davidhirtz\yii2\cms\shopify\tests\fixtures\UserFixture;
+use davidhirtz\yii2\cms\shopify\tests\support\FunctionalTester;
 use davidhirtz\yii2\shopify\models\Product;
 use davidhirtz\yii2\shopify\modules\admin\data\ProductActiveDataProvider;
 use davidhirtz\yii2\shopify\modules\admin\widgets\grids\ProductGridView;
-use davidhirtz\yii2\cms\shopify\tests\fixtures\UserFixture;
-use davidhirtz\yii2\cms\shopify\tests\support\FunctionalTester;
 use davidhirtz\yii2\skeleton\db\Identity;
 use davidhirtz\yii2\skeleton\models\User;
 use davidhirtz\yii2\skeleton\modules\admin\widgets\forms\LoginActiveForm;
