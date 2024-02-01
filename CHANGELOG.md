@@ -1,3 +1,7 @@
+## 2.1.2 (Feb 1, 2023)
+
+- Updated `EntryProductBehavior` to make use of new `CreateValidatorsEvent` event
+
 ## 2.1.1 (Jan 29, 2023)
 
 - Updated dependencies

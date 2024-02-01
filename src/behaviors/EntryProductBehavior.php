@@ -7,6 +7,7 @@ use davidhirtz\yii2\cms\models\Entry;
 use davidhirtz\yii2\cms\shopify\validators\ProductIdValidator;
 use davidhirtz\yii2\shopify\models\traits\ProductRelationTrait;
 use davidhirtz\yii2\skeleton\models\actions\DuplicateActiveRecord;
+use davidhirtz\yii2\skeleton\models\events\CreateValidatorsEvent;
 use davidhirtz\yii2\skeleton\models\events\DuplicateActiveRecordEvent;
 use Yii;
 use yii\base\Behavior;
@@ -24,17 +25,17 @@ class EntryProductBehavior extends Behavior
     public function events(): array
     {
         return [
-            Entry::EVENT_CREATE_VALIDATORS => $this->onCreateValidators(...),
-            DuplicateActiveRecord::EVENT_BEFORE_DUPLICATE => $this->onBeforeClone(...),
+            CreateValidatorsEvent::EVENT_CREATE_VALIDATORS => $this->onCreateValidators(...),
+            DuplicateActiveRecord::EVENT_BEFORE_DUPLICATE => $this->onBeforeDuplicate(...),
         ];
     }
 
-    public function onCreateValidators(): void
+    public function onCreateValidators(CreateValidatorsEvent $event): void
     {
-        $this->owner->getValidators()->append(new ProductIdValidator());
+        $event->validators->append(new ProductIdValidator());
     }
 
-    public function onBeforeClone(DuplicateActiveRecordEvent $event): void
+    public function onBeforeDuplicate(DuplicateActiveRecordEvent $event): void
     {
         if ($event->duplicate->getAttribute('product_id')) {
             Yii::debug('Removing product_id before duplicating entry.', __METHOD__);
