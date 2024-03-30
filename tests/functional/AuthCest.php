@@ -12,7 +12,6 @@ use davidhirtz\yii2\shopify\modules\admin\data\ProductActiveDataProvider;
 use davidhirtz\yii2\shopify\modules\admin\widgets\grids\ProductGridView;
 use davidhirtz\yii2\skeleton\codeception\fixtures\UserFixtureTrait;
 use davidhirtz\yii2\skeleton\codeception\functional\BaseCest;
-use davidhirtz\yii2\skeleton\db\Identity;
 use davidhirtz\yii2\skeleton\models\User;
 use davidhirtz\yii2\skeleton\modules\admin\widgets\forms\LoginActiveForm;
 use Yii;
@@ -53,10 +52,12 @@ class AuthCest extends BaseCest
 
     protected function getLoggedInUser(): User
     {
-        $user = Identity::find()->one();
-        $user->loginType = 'test';
+        $user = User::find()->one();
 
-        Yii::$app->getUser()->login($user);
+        $webuser = Yii::$app->getUser();
+        $webuser->loginType = 'test';
+        $webuser->login($user);
+
         return $user;
     }
 }

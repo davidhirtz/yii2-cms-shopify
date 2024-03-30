@@ -1,3 +1,7 @@
+## 2.1.3 (Mar 30, 2024)
+
+- Added `EntrySiteRelationsBuilder`
+
 ## 2.1.2 (Feb 1, 2023)
 
 - Updated `EntryProductBehavior` to make use of new `CreateValidatorsEvent` event
