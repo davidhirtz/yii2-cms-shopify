@@ -44,6 +44,7 @@ class AuthCest extends BaseCest
 
         $widget = Yii::$container->get(ProductGridView::class, [], [
             'dataProvider' => Yii::createObject(ProductActiveDataProvider::class),
+            'searchUrl' => '/',
         ]);
 
         $I->amOnPage('/admin/product/index');
