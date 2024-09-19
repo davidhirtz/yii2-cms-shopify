@@ -15,34 +15,37 @@ use yii\validators\Validator;
  */
 class ProductIdValidator extends Validator
 {
-    /**
-     * @var array|string
-     */
     public $attributes = ['product_id'];
+    public $skipOnEmpty = false;
 
     /**
      * @param Entry $model
      */
     public function validateAttribute($model, $attribute): void
     {
-        if ($model->isAttributeChanged($attribute)) {
-            $productId = $model->getAttribute($attribute);
-            $isValid = Product::find()->where(['id' => $productId])->exists();
+        $productId = (int)$model->getAttribute($attribute) ?: null;
+        $model->setAttribute($attribute, $productId);
 
-            if ($isValid) {
-                $isTaken = Entry::find()
-                    ->where(['product_id' => $productId])
-                    ->andFilterWhere(['!=', 'id', $model->id])
-                    ->exists();
+        if (!$model->isAttributeChanged($attribute) || $productId === null) {
+            return;
+        }
 
-                if ($isTaken) {
-                    $model->addError($attribute, Yii::t('yii', '{attribute} "{value}" has already been taken.', [
-                        'attribute' => Yii::t('shopify', 'Product'),
-                    ]));
-                }
-            } else {
-                $model->addInvalidAttributeError($attribute);
-            }
+        $exists = Product::find()->where(['id' => $productId])->exists();
+
+        if (!$exists) {
+            $model->addInvalidAttributeError($attribute);
+            return;
+        }
+
+        $isTaken = Entry::find()
+            ->where(['product_id' => $productId])
+            ->andFilterWhere(['!=', 'id', $model->id])
+            ->exists();
+
+        if ($isTaken) {
+            $model->addError($attribute, Yii::t('yii', '{attribute} "{value}" has already been taken.', [
+                'attribute' => Yii::t('shopify', 'Product'),
+            ]));
         }
     }
 

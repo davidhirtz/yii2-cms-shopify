@@ -1,3 +1,7 @@
+## 2.1.4 (Sep 19, 2024)
+
+- Improved `ProductIdValidator` to stop validation if the product ID was not changed
+
 ## 2.1.3 (Mar 30, 2024)
 
 - Added `EntrySiteRelationsBuilder`
