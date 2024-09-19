@@ -32,7 +32,7 @@ class EntryProductBehavior extends Behavior
 
     public function onCreateValidators(CreateValidatorsEvent $event): void
     {
-        $event->validators->append(new ProductIdValidator());
+        $event->validators->append(Yii::createObject(ProductIdValidator::class));
     }
 
     public function onBeforeDuplicate(DuplicateActiveRecordEvent $event): void
