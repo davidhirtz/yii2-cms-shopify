@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace davidhirtz\yii2\cms\shopify\migrations;
 
 use davidhirtz\yii2\cms\migrations\traits\I18nTablesTrait;
@@ -20,7 +22,7 @@ class M220506145159CmsShopify extends Migration
     public function safeUp(): void
     {
         $this->i18nTablesCallback(function () {
-            $this->addColumn(Entry::tableName(), 'product_id', $this->bigInteger()
+            $this->addColumn(Entry::tableName(), 'product_id', (string)$this->bigInteger()
                 ->unsigned()
                 ->null()
                 ->after('type'));

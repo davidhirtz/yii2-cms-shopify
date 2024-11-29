@@ -1,3 +1,7 @@
+## 2.1.4 (Nov 29, 2024)
+
+- Fixed migration for I18N entry tables
+
 ## 2.1.3 (Mar 30, 2024)
 
 - Added `EntrySiteRelationsBuilder`
