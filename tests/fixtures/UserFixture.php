@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace davidhirtz\yii2\cms\shopify\tests\fixtures;
 
 use davidhirtz\yii2\skeleton\models\User;
