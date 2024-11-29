@@ -4,6 +4,8 @@
  * @noinspection PhpUnused
  */
 
+declare(strict_types=1);
+
 namespace davidhirtz\yii2\cms\shopify\tests\functional;
 
 use davidhirtz\yii2\cms\shopify\tests\support\FunctionalTester;
@@ -42,12 +44,13 @@ class AuthCest extends BaseCest
         $auth = Yii::$app->getAuthManager()->getPermission(Product::AUTH_PRODUCT_UPDATE);
         Yii::$app->getAuthManager()->assign($auth, $user->id);
 
+        $I->amOnPage('/admin/product/index');
+
         $widget = Yii::$container->get(ProductGridView::class, [], [
             'dataProvider' => Yii::createObject(ProductActiveDataProvider::class),
             'searchUrl' => '/',
         ]);
 
-        $I->amOnPage('/admin/product/index');
         $I->seeElement("#$widget->id");
     }
 

@@ -1,6 +1,7 @@
 ## 2.1.4 (Sep 19, 2024)
 
 - Enabled `ProductIdValidator` initialization via container
+- Fixed migration for I18N entry tables
 - Improved `ProductIdValidator` to stop validation if the product ID was not changed
 
 ## 2.1.3 (Mar 30, 2024)
