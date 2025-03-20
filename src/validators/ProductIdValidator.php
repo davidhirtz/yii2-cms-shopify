@@ -25,7 +25,7 @@ class ProductIdValidator extends Validator
      */
     public function validateAttribute($model, $attribute): void
     {
-        $productId = (int)$model->getAttribute($attribute) ?: null;
+        $productId = (int)$model->getVisibleAttribute($attribute) ?: null;
         $model->setAttribute($attribute, $productId);
 
         if (!$model->isAttributeChanged($attribute) || $productId === null) {

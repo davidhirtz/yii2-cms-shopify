@@ -1,3 +1,11 @@
+## 2.1.7 (Mar 20, 2024)
+
+- Enhanced `ProductIdValidator` to validate product ID only if it's attribute is visible
+
+## 2.1.6 (Jan 28, 2024)
+
+- Updated dependencies
+
 ## 2.1.5 (Nov 29, 2024)
 
 - Fixed migration for I18N entry tables
