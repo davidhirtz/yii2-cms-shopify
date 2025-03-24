@@ -1,3 +1,8 @@
+## 2.1.8 (Mar 24, 2025)
+
+- Added example `Entry` model
+- Added `EntrySiteRelationsBuilder::$autoloadVariants` option
+
 ## 2.1.7 (Mar 20, 2024)
 
 - Enhanced `ProductIdValidator` to validate product ID only if it's attribute is visible
