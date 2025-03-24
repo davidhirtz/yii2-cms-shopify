@@ -111,16 +111,16 @@
         },
         {
             "name": "davidhirtz/yii2-cms",
-            "version": "2.3.9",
+            "version": "2.3.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davidhirtz/yii2-cms.git",
-                "reference": "0b079a099b0dcba9aa910ff032165198c1edcf7f"
+                "reference": "38f3576d6072a2e320b37757cf0ef8d40d698a3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davidhirtz/yii2-cms/zipball/0b079a099b0dcba9aa910ff032165198c1edcf7f",
-                "reference": "0b079a099b0dcba9aa910ff032165198c1edcf7f",
+                "url": "https://api.github.com/repos/davidhirtz/yii2-cms/zipball/38f3576d6072a2e320b37757cf0ef8d40d698a3d",
+                "reference": "38f3576d6072a2e320b37757cf0ef8d40d698a3d",
                 "shasum": ""
             },
             "require": {
@@ -163,9 +163,9 @@
             "homepage": "https://www.github.com/davidhirtz/yii2-cms",
             "support": {
                 "issues": "https://github.com/davidhirtz/yii2-cms/issues",
-                "source": "https://github.com/davidhirtz/yii2-cms/tree/2.3.9"
+                "source": "https://github.com/davidhirtz/yii2-cms/tree/2.3.10"
             },
-            "time": "2025-03-20T17:10:08+00:00"
+            "time": "2025-03-24T15:20:07+00:00"
         },
         {
             "name": "davidhirtz/yii2-datetime-behavior",
@@ -273,16 +273,16 @@
         },
         {
             "name": "davidhirtz/yii2-shopify",
-            "version": "2.1.10",
+            "version": "2.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davidhirtz/yii2-shopify.git",
-                "reference": "91cd7ef208ffa897b1f2236afbcd9041a9c4ef44"
+                "reference": "07b7360ed7ac127ffa7cb273d99438dcbd7d9f6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davidhirtz/yii2-shopify/zipball/91cd7ef208ffa897b1f2236afbcd9041a9c4ef44",
-                "reference": "91cd7ef208ffa897b1f2236afbcd9041a9c4ef44",
+                "url": "https://api.github.com/repos/davidhirtz/yii2-shopify/zipball/07b7360ed7ac127ffa7cb273d99438dcbd7d9f6f",
+                "reference": "07b7360ed7ac127ffa7cb273d99438dcbd7d9f6f",
                 "shasum": ""
             },
             "require": {
@@ -324,22 +324,22 @@
             "homepage": "https://www.github.com/davidhirtz/yii2-shopify",
             "support": {
                 "issues": "https://github.com/davidhirtz/yii2-shopify/issues",
-                "source": "https://github.com/davidhirtz/yii2-shopify/tree/2.1.10"
+                "source": "https://github.com/davidhirtz/yii2-shopify/tree/2.1.11"
             },
-            "time": "2025-01-28T10:13:51+00:00"
+            "time": "2025-03-24T15:30:00+00:00"
         },
         {
             "name": "davidhirtz/yii2-skeleton",
-            "version": "2.4.6",
+            "version": "2.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davidhirtz/yii2-skeleton.git",
-                "reference": "21c5fc160c5032d75443f3e2ec18020944f5d1ea"
+                "reference": "37ca6bdf2e0dc8e7f74da13a30f27aae414f4694"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davidhirtz/yii2-skeleton/zipball/21c5fc160c5032d75443f3e2ec18020944f5d1ea",
-                "reference": "21c5fc160c5032d75443f3e2ec18020944f5d1ea",
+                "url": "https://api.github.com/repos/davidhirtz/yii2-skeleton/zipball/37ca6bdf2e0dc8e7f74da13a30f27aae414f4694",
+                "reference": "37ca6bdf2e0dc8e7f74da13a30f27aae414f4694",
                 "shasum": ""
             },
             "require": {
@@ -404,9 +404,9 @@
             "homepage": "https://www.github.com/davidhirtz/yii2-skeleton",
             "support": {
                 "issues": "https://github.com/davidhirtz/yii2-skeleton/issues",
-                "source": "https://github.com/davidhirtz/yii2-skeleton/tree/2.4.6"
+                "source": "https://github.com/davidhirtz/yii2-skeleton/tree/2.4.7"
             },
-            "time": "2025-03-20T16:35:02+00:00"
+            "time": "2025-03-24T15:17:33+00:00"
         },
         {
             "name": "davidhirtz/yii2-timeago",
@@ -536,16 +536,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "b115554301161fa21467629f1e1391c1936de517"
+                "reference": "d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/b115554301161fa21467629f1e1391c1936de517",
-                "reference": "b115554301161fa21467629f1e1391c1936de517",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa",
+                "reference": "d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa",
                 "shasum": ""
             },
             "require": {
@@ -591,7 +591,7 @@
             ],
             "support": {
                 "issues": "https://github.com/egulias/EmailValidator/issues",
-                "source": "https://github.com/egulias/EmailValidator/tree/4.0.3"
+                "source": "https://github.com/egulias/EmailValidator/tree/4.0.4"
             },
             "funding": [
                 {
@@ -599,7 +599,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-27T00:36:43+00:00"
+            "time": "2025-03-06T22:45:56+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -4524,16 +4524,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.8",
+            "version": "2.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "f9adff3b87c03b12cc7e46a30a524648e497758f"
+                "reference": "8ca5f79a8f63c49b2359065832a654e1ec70ac30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f9adff3b87c03b12cc7e46a30a524648e497758f",
-                "reference": "f9adff3b87c03b12cc7e46a30a524648e497758f",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8ca5f79a8f63c49b2359065832a654e1ec70ac30",
+                "reference": "8ca5f79a8f63c49b2359065832a654e1ec70ac30",
                 "shasum": ""
             },
             "require": {
@@ -4578,7 +4578,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-09T09:30:48+00:00"
+            "time": "2025-03-24T13:45:00+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

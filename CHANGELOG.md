@@ -1,4 +1,4 @@
-## 2.1.8 (in development)
+## 2.1.8 (Mar 24, 2025)
 
 - Added example `Entry` model
 - Added `EntrySiteRelationsBuilder::$autoloadVariants` option
