@@ -1,3 +1,8 @@
+## 2.1.9 (Mar 24, 2025)
+
+- Added `EntrySiteRelationsBuilder` config in `Bootstrap` class
+- Fixed bug on empty product relation
+
 ## 2.1.8 (Mar 24, 2025)
 
 - Added example `Entry` model

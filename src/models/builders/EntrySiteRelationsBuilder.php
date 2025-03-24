@@ -49,7 +49,7 @@ class EntrySiteRelationsBuilder extends \davidhirtz\yii2\cms\models\builders\Ent
             $product = $this->products[$entry->getAttribute('product_id')] ?? null;
             $entry->populateProductRelation($product);
 
-            if ($product->isRelationPopulated('variants')) {
+            if ($product?->isRelationPopulated('variants')) {
                 $variant = $product->variants[$entry->getAttribute('variant_id')]
                     ?? (reset($product->variants) ?: null);
 
