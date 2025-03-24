@@ -4,11 +4,17 @@ declare(strict_types=1);
 
 namespace davidhirtz\yii2\cms\shopify\models\builders;
 
+use davidhirtz\yii2\cms\shopify\models\Entry;
 use davidhirtz\yii2\shopify\models\Product;
 use davidhirtz\yii2\shopify\models\queries\ProductQuery;
 
+/**
+ * @extends \davidhirtz\yii2\cms\models\builders\EntrySiteRelationsBuilder<Entry>
+ */
 class EntrySiteRelationsBuilder extends \davidhirtz\yii2\cms\models\builders\EntrySiteRelationsBuilder
 {
+    public bool $autoloadVariants = false;
+
     /**
      * @var Product[]
      */
@@ -40,20 +46,30 @@ class EntrySiteRelationsBuilder extends \davidhirtz\yii2\cms\models\builders\Ent
         }
 
         foreach ($this->entries as $entry) {
-            $relation = $this->products[$entry->getAttribute('product_id')] ?? null;
-            $entry->populateRelation('product', $relation);
+            $product = $this->products[$entry->getAttribute('product_id')] ?? null;
+            $entry->populateProductRelation($product);
+
+            if ($product->isRelationPopulated('variants')) {
+                $variant = $product->variants[$entry->getAttribute('variant_id')]
+                    ?? (reset($product->variants) ?: null);
+
+                $product->populateRelation('variant', $variant);
+            }
         }
     }
 
     protected function loadProductVariants(): void
     {
-        $product = $this->products[$this->entry->getAttribute('product_id')] ?? null;
-        $product?->populateRelation('variant', $product->variants[$product->variant_id] ?? null);
+        if (!$this->autoloadVariants) {
+            $product = $this->products[$this->entry->getAttribute('product_id')] ?? null;
+            $product?->populateRelation('variant', $product->variants[$product->variant_id] ?? null);
+        }
     }
 
     protected function getProductQuery(): ProductQuery
     {
         return Product::find()
-            ->whereStatus();
+            ->whereStatus()
+            ->with($this->autoloadVariants ? 'variants' : 'variant');
     }
 }
