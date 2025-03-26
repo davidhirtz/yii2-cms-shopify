@@ -7,7 +7,6 @@ namespace davidhirtz\yii2\cms\shopify\behaviors;
 use davidhirtz\yii2\cms\Bootstrap;
 use davidhirtz\yii2\cms\models\Entry;
 use davidhirtz\yii2\cms\shopify\validators\ProductIdValidator;
-use davidhirtz\yii2\shopify\models\traits\ProductRelationTrait;
 use davidhirtz\yii2\skeleton\models\actions\DuplicateActiveRecord;
 use davidhirtz\yii2\skeleton\models\events\CreateValidatorsEvent;
 use davidhirtz\yii2\skeleton\models\events\DuplicateActiveRecordEvent;
@@ -22,8 +21,6 @@ use yii\base\Behavior;
  */
 class EntryProductBehavior extends Behavior
 {
-    use ProductRelationTrait;
-
     public function events(): array
     {
         return [

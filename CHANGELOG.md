@@ -1,3 +1,8 @@
+## 2.1.10 (Mar 26, 2025)
+
+- Added `ProductRelationTrait` to `Entry` and removed it from `EntryProductBehavior`
+- Fixed default variant population in `EntrySiteRelationsBuilder`
+
 ## 2.1.9 (Mar 24, 2025)
 
 - Added `EntrySiteRelationsBuilder` config in `Bootstrap` class

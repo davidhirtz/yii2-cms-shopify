@@ -7,6 +7,7 @@ namespace davidhirtz\yii2\cms\shopify\models\builders;
 use davidhirtz\yii2\cms\shopify\models\Entry;
 use davidhirtz\yii2\shopify\models\Product;
 use davidhirtz\yii2\shopify\models\queries\ProductQuery;
+use Yii;
 
 /**
  * @extends \davidhirtz\yii2\cms\models\builders\EntrySiteRelationsBuilder<Entry>
@@ -39,6 +40,8 @@ class EntrySiteRelationsBuilder extends \davidhirtz\yii2\cms\models\builders\Ent
         $productIds = array_filter(array_unique($productIds));
 
         if ($productIds) {
+            Yii::debug('Loading related products ...');
+
             $this->products = $this->getProductQuery()
                 ->andWhere(['id' => $productIds])
                 ->indexBy('id')
@@ -46,13 +49,11 @@ class EntrySiteRelationsBuilder extends \davidhirtz\yii2\cms\models\builders\Ent
         }
 
         foreach ($this->entries as $entry) {
-            $product = $this->products[$entry->getAttribute('product_id')] ?? null;
+            $product = $this->products[$entry->product_id] ?? null;
             $entry->populateProductRelation($product);
 
             if ($product?->isRelationPopulated('variants')) {
-                $variant = $product->variants[$entry->getAttribute('variant_id')]
-                    ?? (reset($product->variants) ?: null);
-
+                $variant = $product->variants[$product->variant_id] ?? (current($product->variants) ?: null);
                 $product->populateRelation('variant', $variant);
             }
         }
