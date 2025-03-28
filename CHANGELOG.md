@@ -1,3 +1,7 @@
+## 2.1.11 (in development)
+
+- Enhanced `ProductIdValidator` error message to include the product name
+
 ## 2.1.10 (Mar 26, 2025)
 
 - Added `ProductRelationTrait` to `Entry` and removed it from `EntryProductBehavior`

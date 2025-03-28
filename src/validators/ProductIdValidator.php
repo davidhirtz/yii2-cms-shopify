@@ -32,9 +32,9 @@ class ProductIdValidator extends Validator
             return;
         }
 
-        $exists = Product::find()->where(['id' => $productId])->exists();
+        $product = Product::findOne($productId);
 
-        if (!$exists) {
+        if (!$product) {
             $model->addInvalidAttributeError($attribute);
             return;
         }
@@ -47,6 +47,7 @@ class ProductIdValidator extends Validator
         if ($isTaken) {
             $model->addError($attribute, Yii::t('yii', '{attribute} "{value}" has already been taken.', [
                 'attribute' => Yii::t('shopify', 'Product'),
+                'value' => $product->name,
             ]));
         }
     }
