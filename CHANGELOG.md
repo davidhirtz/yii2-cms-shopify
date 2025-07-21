@@ -1,4 +1,4 @@
-## 2.1.11 (in development)
+## 2.2.0 (in development)
 
 - Enhanced `ProductIdValidator` error message to include the product name
 
