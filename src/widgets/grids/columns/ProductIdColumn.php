@@ -47,14 +47,19 @@ class ProductIdColumn extends DataColumn
             return '';
         }
 
-        $showSlugWarning = $this->validateProductSlug && $product->slug != $model->getI18nAttribute('slug');
+        if ($product->status == $model->status) {
+            $name = $this->validateProductSlug && $product->slug != $model->getI18nAttribute('slug')
+                ? $this->getNameWithSlugWarning($model, $product)
+                : Html::encode($product->name);
+        } else {
+            $name = $product->status < $model->status
+                ? $this->getNameWithStatusIcon($model, $product)
+                : Html::encode($product->name);
+        }
 
-        $name = match ($product->status) {
-            $model->status => $showSlugWarning ? $this->getNameWithSlugWarning($model, $product) : Html::encode($product->name),
-            default => $this->getNameWithStatusIcon($model, $product),
-        };
-
-        return Html::a($name, $product->getShopifyAdminUrl());
+        return Html::a($name, $product->getShopifyAdminUrl(), [
+            'target' => '_blank',
+        ]);
     }
 
     protected function getNameWithSlugWarning(ActiveRecord $model, Product $product): string

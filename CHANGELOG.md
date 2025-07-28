@@ -1,6 +1,7 @@
 ## 2.2.0 (in development)
 
 - Enhanced `ProductIdValidator` error message to include the product name
+- Enhanced `ProductIdColumn` to display the status icon only if the product status is less than the related product
 
 ## 2.1.10 (Mar 26, 2025)
 
