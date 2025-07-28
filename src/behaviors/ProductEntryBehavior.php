@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace davidhirtz\yii2\cms\shopify\behaviors;
 
 use davidhirtz\yii2\cms\models\Entry;
+use davidhirtz\yii2\shopify\models\Product;
 use davidhirtz\yii2\cms\models\traits\EntryRelationTrait;
 use davidhirtz\yii2\cms\Module;
 use davidhirtz\yii2\cms\shopify\Bootstrap;
-use davidhirtz\yii2\shopify\models\Product;
 use Yii;
 use yii\base\Behavior;
 
@@ -41,7 +41,11 @@ class ProductEntryBehavior extends Behavior
     public function onBeforeDelete(): void
     {
         if ($entry = Entry::findOne(['product_id' => $this->owner->id])) {
-            $entry->status = Entry::STATUS_DISABLED;
+            if ($entry->isEnabled()) {
+                $entry->status = Entry::STATUS_DISABLED;
+            }
+
+            $entry->setAttribute('product_id', null);
             $entry->update();
         }
     }
