@@ -13,7 +13,7 @@
   "require": {
     "php": "^8.3",
     "davidhirtz/yii2-cms": "^2.3",
-    "davidhirtz/yii2-shopify": "dev-dev"
+    "davidhirtz/yii2-shopify": "^2.2"
   },
   "require-dev": {
     "codeception/codeception": "^5.0",

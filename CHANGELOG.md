@@ -1,5 +1,6 @@
-## 2.2.0 (in development)
+## 2.2.0 (Jul 28, 2025)
 
+- Added `Entry::$product_id` label
 - Enhanced `ProductIdValidator` error message to include the product name
 - Enhanced `ProductIdColumn` to display the status icon only if the product status is less than the related product
 

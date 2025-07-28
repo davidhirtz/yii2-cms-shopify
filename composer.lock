@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c475abee0a21e165e260e0b7369d2b1",
+    "content-hash": "18e218b7c3103b02f019fd811bae551e",
     "packages": [
         {
             "name": "bower-asset/jquery",
@@ -274,16 +274,16 @@
         },
         {
             "name": "davidhirtz/yii2-shopify",
-            "version": "dev-dev",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davidhirtz/yii2-shopify.git",
-                "reference": "02eb4c9a152c3e74a6a2151fde2adb3742afac16"
+                "reference": "7121bf56e56afb7d0ef98cf59508c53da20f8f48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davidhirtz/yii2-shopify/zipball/02eb4c9a152c3e74a6a2151fde2adb3742afac16",
-                "reference": "02eb4c9a152c3e74a6a2151fde2adb3742afac16",
+                "url": "https://api.github.com/repos/davidhirtz/yii2-shopify/zipball/7121bf56e56afb7d0ef98cf59508c53da20f8f48",
+                "reference": "7121bf56e56afb7d0ef98cf59508c53da20f8f48",
                 "shasum": ""
             },
             "require": {
@@ -326,9 +326,9 @@
             "homepage": "https://www.github.com/davidhirtz/yii2-shopify",
             "support": {
                 "issues": "https://github.com/davidhirtz/yii2-shopify/issues",
-                "source": "https://github.com/davidhirtz/yii2-shopify/tree/dev"
+                "source": "https://github.com/davidhirtz/yii2-shopify/tree/2.2.0"
             },
-            "time": "2025-07-22T14:48:52+00:00"
+            "time": "2025-07-28T17:06:23+00:00"
         },
         {
             "name": "davidhirtz/yii2-skeleton",
@@ -7173,9 +7173,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "davidhirtz/yii2-shopify": 20
-    },
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
