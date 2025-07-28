@@ -54,7 +54,7 @@ class ProductIdColumn extends DataColumn
             default => $this->getNameWithStatusIcon($model, $product),
         };
 
-        return Html::a($name, $product->getAdminRoute());
+        return Html::a($name, $product->getShopifyAdminUrl());
     }
 
     protected function getNameWithSlugWarning(ActiveRecord $model, Product $product): string

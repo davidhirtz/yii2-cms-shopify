@@ -11,6 +11,7 @@
     }
   ],
   "require": {
+    "php": "^8.3",
     "davidhirtz/yii2-cms": "^2.3",
     "davidhirtz/yii2-shopify": "dev-dev"
   },
@@ -38,9 +39,6 @@
     }
   },
   "config": {
-    "platform": {
-      "php": "8.1"
-    },
     "allow-plugins": {
       "yiisoft/yii2-composer": true
     }
