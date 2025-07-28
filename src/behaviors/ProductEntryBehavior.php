@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace davidhirtz\yii2\cms\shopify\behaviors;
 
 use davidhirtz\yii2\cms\models\Entry;
-use davidhirtz\yii2\shopify\models\Product;
 use davidhirtz\yii2\cms\models\traits\EntryRelationTrait;
 use davidhirtz\yii2\cms\Module;
 use davidhirtz\yii2\cms\shopify\Bootstrap;
+use davidhirtz\yii2\shopify\models\Product;
 use Yii;
 use yii\base\Behavior;
 
