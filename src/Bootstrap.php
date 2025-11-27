@@ -13,6 +13,8 @@ use davidhirtz\yii2\shopify\models\Product;
 use davidhirtz\yii2\skeleton\web\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Event;
+use yii\base\Widget;
+use yii\db\BaseActiveRecord;
 
 class Bootstrap implements BootstrapInterface
 {
@@ -21,19 +23,19 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app): void
     {
-        Event::on(Entry::class, Entry::EVENT_INIT, function (Event $event) {
+        Event::on(Entry::class, Widget::EVENT_INIT, function (Event $event) {
             /** @var Entry $entry */
             $entry = $event->sender;
             $entry->attachBehavior('EntryProductBehavior', EntryProductBehavior::class);
         });
 
-        Event::on(Product::class, Product::EVENT_INIT, function (Event $event) {
+        Event::on(Product::class, BaseActiveRecord::EVENT_INIT, function (Event $event) {
             /** @var Product $product */
             $product = $event->sender;
             $product->attachBehavior('ProductEntryBehavior', ProductEntryBehavior::class);
         });
 
-        Event::on(EntryActiveForm::class, EntryActiveForm::EVENT_INIT, function (Event $event) {
+        Event::on(EntryActiveForm::class, BaseActiveRecord::EVENT_INIT, function (Event $event) {
             /** @var EntryActiveForm $form */
             $form = $event->sender;
             $form->attachBehavior('ProductIdFieldBehavior', ProductIdFieldBehavior::class);
