@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Hirtz\Cms\shopify\widgets\forms;
 
-use Hirtz\Cms\models\Entry;
-use Hirtz\Cms\modules\admin\widgets\forms\EntryActiveForm;
+use Hirtz\Cms\Models\Entry;
+use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryActiveForm;
 use Hirtz\Cms\shopify\Bootstrap;
 use Hirtz\Shopify\models\Product;
 use Yii;

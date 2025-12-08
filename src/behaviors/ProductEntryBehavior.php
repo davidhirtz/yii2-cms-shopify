@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Hirtz\Cms\shopify\behaviors;
 
-use Hirtz\Cms\models\Entry;
-use Hirtz\Cms\models\traits\EntryRelationTrait;
+use Hirtz\Cms\Models\Entry;
+use Hirtz\Cms\Models\traits\EntryRelationTrait;
 use Hirtz\Cms\Module;
 use Hirtz\Cms\shopify\Bootstrap;
 use Hirtz\Shopify\models\Product;

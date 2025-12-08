@@ -10,12 +10,12 @@ namespace Hirtz\Cms\shopify\tests\functional;
 
 use Hirtz\Cms\shopify\tests\support\FunctionalTester;
 use Hirtz\Shopify\models\Product;
-use Hirtz\Shopify\modules\admin\data\ProductActiveDataProvider;
-use Hirtz\Shopify\modules\admin\widgets\grids\ProductGridView;
-use Hirtz\Skeleton\codeception\fixtures\UserFixtureTrait;
-use Hirtz\Skeleton\codeception\functional\BaseCest;
-use Hirtz\Skeleton\models\User;
-use Hirtz\Skeleton\modules\admin\widgets\forms\LoginActiveForm;
+use Hirtz\Shopify\Modules\Admin\Data\ProductActiveDataProvider;
+use Hirtz\Shopify\Modules\Admin\Widgets\Grids\ProductGridView;
+use Hirtz\Skeleton\Codeception\fixtures\UserFixtureTrait;
+use Hirtz\Skeleton\Codeception\functional\BaseCest;
+use Hirtz\Skeleton\Models\User;
+use Hirtz\Skeleton\Modules\Admin\Widgets\Forms\LoginActiveForm;
 use Yii;
 
 class AuthCest extends BaseCest

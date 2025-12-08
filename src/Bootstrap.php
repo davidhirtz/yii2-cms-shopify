@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Hirtz\Cms\shopify;
 
-use Hirtz\Cms\models\Entry;
-use Hirtz\Cms\modules\admin\widgets\forms\EntryActiveForm;
+use Hirtz\Cms\Models\Entry;
+use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryActiveForm;
 use Hirtz\Cms\shopify\behaviors\EntryProductBehavior;
 use Hirtz\Cms\shopify\behaviors\ProductEntryBehavior;
 use Hirtz\Cms\shopify\widgets\forms\ProductIdFieldBehavior;
 use Hirtz\Shopify\models\Product;
-use Hirtz\Skeleton\web\Application;
+use Hirtz\Skeleton\Web\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Event;
 use yii\base\Widget;
@@ -41,6 +41,6 @@ class Bootstrap implements BootstrapInterface
             $form->attachBehavior('ProductIdFieldBehavior', ProductIdFieldBehavior::class);
         });
 
-        $app->setMigrationNamespace('Hirtz\Cms\shopify\migrations');
+        $app->setMigrationNamespace('Hirtz\Cms\shopify\Migrations');
     }
 }

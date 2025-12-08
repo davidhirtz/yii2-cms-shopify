@@ -12,6 +12,6 @@ use Hirtz\Shopify\models\traits\ProductRelationTrait;
  * @property-read Product|null $product {@see ProductRelationTrait::getProduct()}
  * @method void populateProductRelation(?Product $product) {@see ProductRelationTrait::populateProductRelation()}
  */
-class Entry extends \Hirtz\Cms\models\Entry
+class Entry extends \Hirtz\Cms\Models\Entry
 {
 }

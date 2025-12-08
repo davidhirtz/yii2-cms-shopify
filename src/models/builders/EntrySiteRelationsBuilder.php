@@ -9,9 +9,9 @@ use Hirtz\Shopify\models\Product;
 use Hirtz\Shopify\models\queries\ProductQuery;
 
 /**
- * @extends \Hirtz\Cms\models\builders\EntrySiteRelationsBuilder<Entry>
+ * @extends \Hirtz\Cms\Models\builders\EntrySiteRelationsBuilder<Entry>
  */
-class EntrySiteRelationsBuilder extends \Hirtz\Cms\models\builders\EntrySiteRelationsBuilder
+class EntrySiteRelationsBuilder extends \Hirtz\Cms\Models\builders\EntrySiteRelationsBuilder
 {
     public bool $autoloadVariants = false;
 

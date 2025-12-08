@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Hirtz\Cms\shopify\validators;
 
-use Hirtz\Cms\models\Entry;
+use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\shopify\behaviors\EntryProductBehavior;
 use Hirtz\Shopify\models\Product;
 use Yii;

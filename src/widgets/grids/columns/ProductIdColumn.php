@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Hirtz\Cms\shopify\widgets\grids\columns;
 
-use Hirtz\Cms\models\ActiveRecord;
-use Hirtz\Cms\modules\admin\widgets\grids\EntryGridView;
+use Hirtz\Cms\Models\ActiveRecord;
+use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryGridView;
 use Hirtz\Shopify\models\Product;
-use Hirtz\Skeleton\helpers\Html;
+use Hirtz\Skeleton\Helpers\Html;
 use Yii;
 use yii\grid\DataColumn;
 

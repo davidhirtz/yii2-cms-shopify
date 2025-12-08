@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Hirtz\Cms\shopify\behaviors;
 
 use Hirtz\Cms\Bootstrap;
-use Hirtz\Cms\models\Entry;
+use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\shopify\validators\ProductIdValidator;
 use Hirtz\Shopify\models\traits\ProductRelationTrait;
-use Hirtz\Skeleton\models\actions\DuplicateActiveRecord;
-use Hirtz\Skeleton\models\events\CreateValidatorsEvent;
-use Hirtz\Skeleton\models\events\DuplicateActiveRecordEvent;
+use Hirtz\Skeleton\Models\Actions\DuplicateActiveRecord;
+use Hirtz\Skeleton\Models\Events\CreateValidatorsEvent;
+use Hirtz\Skeleton\Models\Events\DuplicateActiveRecordEvent;
 use Yii;
 use yii\base\Behavior;
 
