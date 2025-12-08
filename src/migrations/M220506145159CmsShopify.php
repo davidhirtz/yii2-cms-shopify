@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace davidhirtz\yii2\cms\shopify\migrations;
+namespace Hirtz\Cms\shopify\migrations;
 
-use davidhirtz\yii2\cms\migrations\traits\I18nTablesTrait;
-use davidhirtz\yii2\cms\models\Entry;
-use davidhirtz\yii2\shopify\models\Product;
-use davidhirtz\yii2\skeleton\db\traits\MigrationTrait;
+use Hirtz\Cms\migrations\traits\I18nTablesTrait;
+use Hirtz\Cms\models\Entry;
+use Hirtz\Shopify\models\Product;
+use Hirtz\Skeleton\db\traits\MigrationTrait;
 use yii\db\Migration;
 
 /**

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace davidhirtz\yii2\cms\shopify\behaviors;
+namespace Hirtz\Cms\shopify\behaviors;
 
-use davidhirtz\yii2\cms\models\Entry;
-use davidhirtz\yii2\cms\models\traits\EntryRelationTrait;
-use davidhirtz\yii2\cms\Module;
-use davidhirtz\yii2\cms\shopify\Bootstrap;
-use davidhirtz\yii2\shopify\models\Product;
+use Hirtz\Cms\models\Entry;
+use Hirtz\Cms\models\traits\EntryRelationTrait;
+use Hirtz\Cms\Module;
+use Hirtz\Cms\shopify\Bootstrap;
+use Hirtz\Shopify\models\Product;
 use Yii;
 use yii\base\Behavior;
 

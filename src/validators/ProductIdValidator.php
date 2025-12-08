@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace davidhirtz\yii2\cms\shopify\validators;
+namespace Hirtz\Cms\shopify\validators;
 
-use davidhirtz\yii2\cms\models\Entry;
-use davidhirtz\yii2\cms\shopify\behaviors\EntryProductBehavior;
-use davidhirtz\yii2\shopify\models\Product;
+use Hirtz\Cms\models\Entry;
+use Hirtz\Cms\shopify\behaviors\EntryProductBehavior;
+use Hirtz\Shopify\models\Product;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\validators\Validator;

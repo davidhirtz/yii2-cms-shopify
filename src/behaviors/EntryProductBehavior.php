@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace davidhirtz\yii2\cms\shopify\behaviors;
+namespace Hirtz\Cms\shopify\behaviors;
 
-use davidhirtz\yii2\cms\Bootstrap;
-use davidhirtz\yii2\cms\models\Entry;
-use davidhirtz\yii2\cms\shopify\validators\ProductIdValidator;
-use davidhirtz\yii2\shopify\models\traits\ProductRelationTrait;
-use davidhirtz\yii2\skeleton\models\actions\DuplicateActiveRecord;
-use davidhirtz\yii2\skeleton\models\events\CreateValidatorsEvent;
-use davidhirtz\yii2\skeleton\models\events\DuplicateActiveRecordEvent;
+use Hirtz\Cms\Bootstrap;
+use Hirtz\Cms\models\Entry;
+use Hirtz\Cms\shopify\validators\ProductIdValidator;
+use Hirtz\Shopify\models\traits\ProductRelationTrait;
+use Hirtz\Skeleton\models\actions\DuplicateActiveRecord;
+use Hirtz\Skeleton\models\events\CreateValidatorsEvent;
+use Hirtz\Skeleton\models\events\DuplicateActiveRecordEvent;
 use Yii;
 use yii\base\Behavior;
 

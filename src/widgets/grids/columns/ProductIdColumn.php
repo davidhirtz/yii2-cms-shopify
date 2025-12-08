@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace davidhirtz\yii2\cms\shopify\widgets\grids\columns;
+namespace Hirtz\Cms\shopify\widgets\grids\columns;
 
-use davidhirtz\yii2\cms\models\ActiveRecord;
-use davidhirtz\yii2\cms\modules\admin\widgets\grids\EntryGridView;
-use davidhirtz\yii2\shopify\models\Product;
-use davidhirtz\yii2\skeleton\helpers\Html;
+use Hirtz\Cms\models\ActiveRecord;
+use Hirtz\Cms\modules\admin\widgets\grids\EntryGridView;
+use Hirtz\Shopify\models\Product;
+use Hirtz\Skeleton\helpers\Html;
 use Yii;
 use yii\grid\DataColumn;
 

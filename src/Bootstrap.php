@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace davidhirtz\yii2\cms\shopify;
+namespace Hirtz\Cms\shopify;
 
-use davidhirtz\yii2\cms\models\Entry;
-use davidhirtz\yii2\cms\modules\admin\widgets\forms\EntryActiveForm;
-use davidhirtz\yii2\cms\shopify\behaviors\EntryProductBehavior;
-use davidhirtz\yii2\cms\shopify\behaviors\ProductEntryBehavior;
-use davidhirtz\yii2\cms\shopify\widgets\forms\ProductIdFieldBehavior;
-use davidhirtz\yii2\shopify\models\Product;
-use davidhirtz\yii2\skeleton\web\Application;
+use Hirtz\Cms\models\Entry;
+use Hirtz\Cms\modules\admin\widgets\forms\EntryActiveForm;
+use Hirtz\Cms\shopify\behaviors\EntryProductBehavior;
+use Hirtz\Cms\shopify\behaviors\ProductEntryBehavior;
+use Hirtz\Cms\shopify\widgets\forms\ProductIdFieldBehavior;
+use Hirtz\Shopify\models\Product;
+use Hirtz\Skeleton\web\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Event;
 use yii\base\Widget;
@@ -41,6 +41,6 @@ class Bootstrap implements BootstrapInterface
             $form->attachBehavior('ProductIdFieldBehavior', ProductIdFieldBehavior::class);
         });
 
-        $app->setMigrationNamespace('davidhirtz\yii2\cms\shopify\migrations');
+        $app->setMigrationNamespace('Hirtz\Cms\shopify\migrations');
     }
 }

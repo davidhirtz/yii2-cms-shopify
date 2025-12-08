@@ -32,12 +32,12 @@
   },
   "autoload": {
     "psr-4": {
-      "davidhirtz\\yii2\\cms\\shopify\\": "src"
+      "Hirtz\\Cms\\shopify\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "davidhirtz\\yii2\\cms\\shopify\\tests\\": "tests"
+      "Hirtz\\Cms\\shopify\\tests\\": "tests"
     }
   },
   "config": {
@@ -50,7 +50,7 @@
     }
   },
   "extra": {
-    "bootstrap": "davidhirtz\\yii2\\cms\\shopify\\Bootstrap"
+    "bootstrap": "Hirtz\\Cms\\shopify\\Bootstrap"
   },  "repositories": [
   {
     "type": "composer",

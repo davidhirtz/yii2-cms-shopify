@@ -6,16 +6,16 @@
 
 declare(strict_types=1);
 
-namespace davidhirtz\yii2\cms\shopify\tests\functional;
+namespace Hirtz\Cms\shopify\tests\functional;
 
-use davidhirtz\yii2\cms\shopify\tests\support\FunctionalTester;
-use davidhirtz\yii2\shopify\models\Product;
-use davidhirtz\yii2\shopify\modules\admin\data\ProductActiveDataProvider;
-use davidhirtz\yii2\shopify\modules\admin\widgets\grids\ProductGridView;
-use davidhirtz\yii2\skeleton\codeception\fixtures\UserFixtureTrait;
-use davidhirtz\yii2\skeleton\codeception\functional\BaseCest;
-use davidhirtz\yii2\skeleton\models\User;
-use davidhirtz\yii2\skeleton\modules\admin\widgets\forms\LoginActiveForm;
+use Hirtz\Cms\shopify\tests\support\FunctionalTester;
+use Hirtz\Shopify\models\Product;
+use Hirtz\Shopify\modules\admin\data\ProductActiveDataProvider;
+use Hirtz\Shopify\modules\admin\widgets\grids\ProductGridView;
+use Hirtz\Skeleton\codeception\fixtures\UserFixtureTrait;
+use Hirtz\Skeleton\codeception\functional\BaseCest;
+use Hirtz\Skeleton\models\User;
+use Hirtz\Skeleton\modules\admin\widgets\forms\LoginActiveForm;
 use Yii;
 
 class AuthCest extends BaseCest

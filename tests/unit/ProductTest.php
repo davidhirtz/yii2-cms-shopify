@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace davidhirtz\yii2\cms\shopify\tests\unit;
+namespace Hirtz\Cms\shopify\tests\unit;
 
 use Codeception\Test\Unit;
 

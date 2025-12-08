@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace davidhirtz\yii2\cms\shopify\widgets\forms;
+namespace Hirtz\Cms\shopify\widgets\forms;
 
-use davidhirtz\yii2\cms\models\Entry;
-use davidhirtz\yii2\cms\modules\admin\widgets\forms\EntryActiveForm;
-use davidhirtz\yii2\cms\shopify\Bootstrap;
-use davidhirtz\yii2\shopify\models\Product;
+use Hirtz\Cms\models\Entry;
+use Hirtz\Cms\modules\admin\widgets\forms\EntryActiveForm;
+use Hirtz\Cms\shopify\Bootstrap;
+use Hirtz\Shopify\models\Product;
 use Yii;
 use yii\base\Behavior;
 use yii\widgets\ActiveField;

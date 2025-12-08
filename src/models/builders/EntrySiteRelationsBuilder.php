@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace davidhirtz\yii2\cms\shopify\models\builders;
+namespace Hirtz\Cms\shopify\models\builders;
 
-use davidhirtz\yii2\cms\shopify\models\Entry;
-use davidhirtz\yii2\shopify\models\Product;
-use davidhirtz\yii2\shopify\models\queries\ProductQuery;
+use Hirtz\Cms\shopify\models\Entry;
+use Hirtz\Shopify\models\Product;
+use Hirtz\Shopify\models\queries\ProductQuery;
 
 /**
- * @extends \davidhirtz\yii2\cms\models\builders\EntrySiteRelationsBuilder<Entry>
+ * @extends \Hirtz\Cms\models\builders\EntrySiteRelationsBuilder<Entry>
  */
-class EntrySiteRelationsBuilder extends \davidhirtz\yii2\cms\models\builders\EntrySiteRelationsBuilder
+class EntrySiteRelationsBuilder extends \Hirtz\Cms\models\builders\EntrySiteRelationsBuilder
 {
     public bool $autoloadVariants = false;
 
