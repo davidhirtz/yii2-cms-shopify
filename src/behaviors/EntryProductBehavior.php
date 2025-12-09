@@ -24,6 +24,7 @@ class EntryProductBehavior extends Behavior
 {
     use ProductRelationTrait;
 
+    #[\Override]
     public function events(): array
     {
         return [

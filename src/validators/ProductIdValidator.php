@@ -23,6 +23,7 @@ class ProductIdValidator extends Validator
     /**
      * @param Entry $model
      */
+    #[\Override]
     public function validateAttribute($model, $attribute): void
     {
         $productId = (int)$model->getVisibleAttribute($attribute) ?: null;
@@ -51,6 +52,7 @@ class ProductIdValidator extends Validator
         }
     }
 
+    #[\Override]
     public function validate($value, &$error = null): bool
     {
         throw new NotSupportedException(static::class . ' does not support validate().');

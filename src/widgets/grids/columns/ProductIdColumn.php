@@ -28,6 +28,7 @@ class ProductIdColumn extends DataColumn
 
     protected static ?array $_products = null;
 
+    #[\Override]
     public function init(): void
     {
         $this->label ??= Yii::t('shopify', 'Product');
@@ -39,6 +40,7 @@ class ProductIdColumn extends DataColumn
     /**
      * @param ActiveRecord $model
      */
+    #[\Override]
     protected function renderDataCellContent($model, $key, $index): string
     {
         $product = ($this->getProducts()[$model->getAttribute($this->attribute)] ?? null);

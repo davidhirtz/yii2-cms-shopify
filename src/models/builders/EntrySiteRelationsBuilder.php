@@ -20,6 +20,7 @@ class EntrySiteRelationsBuilder extends \Hirtz\Cms\Models\builders\EntrySiteRela
      */
     protected array $products = [];
 
+    #[\Override]
     protected function loadRelations(): void
     {
         parent::loadRelations();
