@@ -8,7 +8,7 @@ use Codeception\Test\Unit;
 
 class ProductTest extends Unit
 {
-    public function testCreateProduct()
+    public function testCreateProduct(): void
     {
     }
 }

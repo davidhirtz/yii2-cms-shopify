@@ -21,7 +21,7 @@ class M220506145159CmsShopify extends Migration
 
     public function safeUp(): void
     {
-        $this->i18nTablesCallback(function () {
+        $this->i18nTablesCallback(function (): void {
             $this->addColumn(Entry::tableName(), 'product_id', (string)$this->bigInteger()
                 ->unsigned()
                 ->null()
@@ -42,7 +42,7 @@ class M220506145159CmsShopify extends Migration
 
     public function safeDown(): void
     {
-        $this->i18nTablesCallback(function () {
+        $this->i18nTablesCallback(function (): void {
             $this->dropColumn(Entry::tableName(), 'product_id');
         });
     }

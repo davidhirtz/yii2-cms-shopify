@@ -23,19 +23,19 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app): void
     {
-        Event::on(Entry::class, Widget::EVENT_INIT, function (Event $event) {
+        Event::on(Entry::class, Widget::EVENT_INIT, function (Event $event): void {
             /** @var Entry $entry */
             $entry = $event->sender;
             $entry->attachBehavior('EntryProductBehavior', EntryProductBehavior::class);
         });
 
-        Event::on(Product::class, BaseActiveRecord::EVENT_INIT, function (Event $event) {
+        Event::on(Product::class, BaseActiveRecord::EVENT_INIT, function (Event $event): void {
             /** @var Product $product */
             $product = $event->sender;
             $product->attachBehavior('ProductEntryBehavior', ProductEntryBehavior::class);
         });
 
-        Event::on(EntryActiveForm::class, BaseActiveRecord::EVENT_INIT, function (Event $event) {
+        Event::on(EntryActiveForm::class, BaseActiveRecord::EVENT_INIT, function (Event $event): void {
             /** @var EntryActiveForm $form */
             $form = $event->sender;
             $form->attachBehavior('ProductIdFieldBehavior', ProductIdFieldBehavior::class);
