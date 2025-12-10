@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Hirtz\Cms\shopify\behaviors;
 
 use Hirtz\Cms\Models\Entry;
-use Hirtz\Cms\Models\traits\EntryRelationTrait;
+use Hirtz\Cms\Models\Traits\EntryRelationTrait;
 use Hirtz\Cms\Module;
 use Hirtz\Cms\shopify\Bootstrap;
-use Hirtz\Shopify\models\Product;
+use Hirtz\Shopify\Models\Product;
 use Yii;
 use yii\base\Behavior;
 

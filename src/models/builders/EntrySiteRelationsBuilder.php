@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Cms\shopify\models\builders;
+namespace Hirtz\Cms\shopify\Models\builders;
 
-use Hirtz\Cms\shopify\models\Entry;
-use Hirtz\Shopify\models\Product;
-use Hirtz\Shopify\models\queries\ProductQuery;
+use Hirtz\Cms\shopify\Models\Entry;
+use Hirtz\Shopify\Models\Product;
+use Hirtz\Shopify\Models\Queries\ProductQuery;
 
 /**
  * @extends \Hirtz\Cms\Models\builders\EntrySiteRelationsBuilder<Entry>

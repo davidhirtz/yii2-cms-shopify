@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Cms\shopify\models;
+namespace Hirtz\Cms\shopify\Models;
 
-use Hirtz\Shopify\models\Product;
-use Hirtz\Shopify\models\traits\ProductRelationTrait;
+use Hirtz\Shopify\Models\Product;
+use Hirtz\Shopify\Models\Traits\ProductRelationTrait;
 
 /**
  * @property int|null $product_id

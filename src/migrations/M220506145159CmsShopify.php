@@ -6,7 +6,7 @@ namespace Hirtz\Cms\shopify\Migrations;
 
 use Hirtz\Cms\Migrations\Traits\I18nTablesTrait;
 use Hirtz\Cms\Models\Entry;
-use Hirtz\Shopify\models\Product;
+use Hirtz\Shopify\Models\Product;
 use Hirtz\Skeleton\Db\Traits\MigrationTrait;
 use yii\db\Migration;
 

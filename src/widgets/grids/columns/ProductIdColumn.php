@@ -6,7 +6,7 @@ namespace Hirtz\Cms\shopify\widgets\grids\columns;
 
 use Hirtz\Cms\Models\ActiveRecord;
 use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryGridView;
-use Hirtz\Shopify\models\Product;
+use Hirtz\Shopify\Models\Product;
 use Hirtz\Skeleton\Helpers\Html;
 use Yii;
 use yii\grid\DataColumn;

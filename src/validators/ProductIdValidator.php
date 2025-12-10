@@ -6,7 +6,7 @@ namespace Hirtz\Cms\shopify\validators;
 
 use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\shopify\behaviors\EntryProductBehavior;
-use Hirtz\Shopify\models\Product;
+use Hirtz\Shopify\Models\Product;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\validators\Validator;

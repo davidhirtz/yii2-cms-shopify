@@ -9,7 +9,7 @@ use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryActiveForm;
 use Hirtz\Cms\shopify\behaviors\EntryProductBehavior;
 use Hirtz\Cms\shopify\behaviors\ProductEntryBehavior;
 use Hirtz\Cms\shopify\widgets\forms\ProductIdFieldBehavior;
-use Hirtz\Shopify\models\Product;
+use Hirtz\Shopify\Models\Product;
 use Hirtz\Skeleton\Web\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Event;

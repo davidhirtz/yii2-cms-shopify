@@ -7,7 +7,7 @@ namespace Hirtz\Cms\shopify\widgets\forms;
 use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryActiveForm;
 use Hirtz\Cms\shopify\Bootstrap;
-use Hirtz\Shopify\models\Product;
+use Hirtz\Shopify\Models\Product;
 use Yii;
 use yii\base\Behavior;
 use yii\widgets\ActiveField;
