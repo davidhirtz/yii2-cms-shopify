@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Hirtz\Cms\shopify\widgets\grids\columns;
 
 use Hirtz\Cms\Models\ActiveRecord;
-use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryGridView;
+use Hirtz\Cms\Modules\Admin\Widgets\Grids\EntryGridView;
 use Hirtz\Shopify\Models\Product;
 use Hirtz\Skeleton\Helpers\Html;
 use Yii;
