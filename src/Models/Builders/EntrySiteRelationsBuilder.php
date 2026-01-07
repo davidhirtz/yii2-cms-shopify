@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Cms\shopify\Models\builders;
+namespace Hirtz\Cms\shopify\Models\Builders;
 
 use Hirtz\Cms\shopify\Models\Entry;
 use Hirtz\Shopify\Models\Product;
 use Hirtz\Shopify\Models\Queries\ProductQuery;
 
 /**
- * @extends \Hirtz\Cms\Models\builders\EntrySiteRelationsBuilder<Entry>
+ * @extends \Hirtz\Cms\Models\Builders\EntrySiteRelationsBuilder<Entry>
  */
-class EntrySiteRelationsBuilder extends \Hirtz\Cms\Models\builders\EntrySiteRelationsBuilder
+class EntrySiteRelationsBuilder extends \Hirtz\Cms\Models\Builders\EntrySiteRelationsBuilder
 {
     public bool $autoloadVariants = false;
 
