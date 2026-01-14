@@ -2,109 +2,84 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Cms\shopify\widgets\grids\columns;
+namespace Hirtz\Cms\Shopify\Widgets\Grids\Columns;
 
-use Hirtz\Cms\Models\ActiveRecord;
+use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Modules\Admin\Widgets\Grids\EntryGridView;
 use Hirtz\Shopify\Models\Product;
-use Hirtz\Skeleton\Helpers\Html;
+use Hirtz\Skeleton\Html\A;
+use Hirtz\Skeleton\Html\Icon;
+use Hirtz\Skeleton\Widgets\Grids\Columns\Column;
+use Stringable;
 use Yii;
-use yii\grid\DataColumn;
 
 /**
  * @property EntryGridView $grid
  */
-class ProductIdColumn extends DataColumn
+class ProductIdColumn extends Column
 {
-    /**
-     * @var string
-     */
-    public $attribute = 'product_id';
+    private static ?array $_products = null;
 
-    /**
-     * @var bool whether mismatching product URLs should be marked with a marking
-     */
-    public bool $validateProductSlug = true;
-
-    protected static ?array $_products = null;
-
-    #[\Override]
-    public function init(): void
+    public function __construct(private readonly string $property = 'product_id')
     {
-        $this->label ??= Yii::t('shopify', 'Product');
-        $this->visible = $this->visible && count($this->getProducts()) > 0;
-
-        parent::init();
+        $this->content = $this->getContent(...);
+        $this->visible = count($this->getProducts()) > 0;
     }
 
-    /**
-     * @param ActiveRecord $model
-     */
-    #[\Override]
-    protected function renderDataCellContent($model, $key, $index): string
+    protected function getContent(Entry $entry): ?Stringable
     {
-        $product = ($this->getProducts()[$model->getAttribute($this->attribute)] ?? null);
+        $product = $this->getProducts()[$entry->getAttribute($this->property)] ?? null;
 
         if (!$product) {
-            return '';
+            return null;
         }
 
-        $showSlugWarning = $this->validateProductSlug && $product->slug != $model->getI18nAttribute('slug');
+        $link = A::make()
+            ->text($product->name)
+            ->href($product->getShopifyAdminUrl());
 
-        $name = match ($product->status) {
-            $model->status => $showSlugWarning ? $this->getNameWithSlugWarning($model, $product) : Html::encode($product->name),
-            default => $this->getNameWithStatusIcon($model, $product),
-        };
+        if ($product->status === $entry->status) {
+            if ($product->slug !== $entry->getI18nAttribute('slug')) {
+                $link->icon(Icon::make()
+                    ->name('exclamation-triangle')
+                    ->tooltip(Yii::t('yii', '{attribute} must be equal to "{compareValueOrAttribute}".', [
+                        'attribute' => $entry->getAttributeLabel('slug'),
+                        'compareValueOrAttribute' => $product->slug,
+                    ])));
+            }
 
-        return Html::a($name, $product->getAdminRoute());
-    }
+            return $link;
+        }
 
-    protected function getNameWithSlugWarning(ActiveRecord $model, Product $product): string
-    {
-        return Html::iconText('exclamation-triangle', Html::encode($product->name), [
-            'title' => Yii::t('yii', '{attribute} must be equal to "{compareValueOrAttribute}".', [
-                'attribute' => $model->getAttributeLabel('slug'),
-                'compareValueOrAttribute' => $product->slug,
-            ]),
-            'data-toggle' => 'tooltip',
-        ]);
-    }
-
-    /**
-     * @noinspection PhpUnusedParameterInspection
-     */
-    protected function getNameWithStatusIcon(ActiveRecord $model, Product $product): string
-    {
-        return Html::iconText($product->getStatusIcon(), Html::encode($product->name), [
-            'title' => $product->getStatusName(),
-            'data-toggle' => 'tooltip',
-        ]);
+        return $link->icon(Icon::make()
+            ->name($product->getStatusIcon())
+            ->tooltip($product->getStatusName()));
     }
 
     /**
      * @return Product[]
      */
-    public function getProducts(): array
+    protected function getProducts(): array
     {
-        if (static::$_products === null) {
-            static::$_products = [];
-            $productIds = [];
+        return static::$_products ??= ($productIds = $this->getProductIds())
+            ? Product::find()
+                ->select(['id', 'status', 'name', 'slug'])
+                ->andWhere(['id' => $productIds])
+                ->indexBy('id')
+                ->all()
+            : [];
+    }
 
-            foreach ($this->grid->dataProvider->getModels() as $model) {
-                if ($productId = $model->getAttribute($this->attribute)) {
-                    $productIds[] = $productId;
-                }
-            }
+    protected function getProductIds(): array
+    {
+        $productIds = [];
 
-            if ($productIds) {
-                static::$_products = Product::find()
-                    ->select(['id', 'status', 'name', 'slug'])
-                    ->andWhere(['id' => $productIds])
-                    ->indexBy('id')
-                    ->all();
+        foreach ($this->grid->provider->getModels() as $model) {
+            if ($productId = $model->getAttribute($this->property)) {
+                $productIds[] = $productId;
             }
         }
 
-        return static::$_products;
+        return array_unique($productIds);
     }
 }

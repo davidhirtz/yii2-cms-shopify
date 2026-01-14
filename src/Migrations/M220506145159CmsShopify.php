@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Cms\shopify\Migrations;
+namespace Hirtz\Cms\Shopify\Migrations;
 
 use Hirtz\Cms\Migrations\Traits\I18nTablesTrait;
 use Hirtz\Cms\Models\Entry;

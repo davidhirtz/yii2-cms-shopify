@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Cms\shopify\validators;
+namespace Hirtz\Cms\Shopify\Validators;
 
 use Hirtz\Cms\Models\Entry;
-use Hirtz\Cms\shopify\behaviors\EntryProductBehavior;
+use Hirtz\Cms\Shopify\Behaviors\EntryProductBehavior;
 use Hirtz\Shopify\Models\Product;
+use Override;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\validators\Validator;
@@ -23,7 +24,7 @@ class ProductIdValidator extends Validator
     /**
      * @param Entry $model
      */
-    #[\Override]
+    #[Override]
     public function validateAttribute($model, $attribute): void
     {
         $productId = (int)$model->getVisibleAttribute($attribute) ?: null;
@@ -52,7 +53,7 @@ class ProductIdValidator extends Validator
         }
     }
 
-    #[\Override]
+    #[Override]
     public function validate($value, &$error = null): bool
     {
         throw new NotSupportedException(static::class . ' does not support validate().');

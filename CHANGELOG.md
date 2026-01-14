@@ -44,8 +44,8 @@
 ## 2.0.0 (Nov 3, 2023)
 
 - Moved source code to `src` folder
-- Changed namespace of `Hirtz\Cms\shopify\widgets\grid\columns\ProductIdColumn`
-  to `Hirtz\Cms\shopify\widgets\grids\columns\ProductIdColumn`
+- Changed namespace of `Hirtz\Cms\Shopify\widgets\grid\columns\ProductIdColumn`
+  to `Hirtz\Cms\Shopify\Widgets\Grids\columns\ProductIdColumn`
 - Upgraded `davidhirtz/yii2-shopify` to version `^2.0`
 
 ## 1.0.8 (Nov 2, 2023)

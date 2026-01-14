@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Cms\shopify\behaviors;
+namespace Hirtz\Cms\Shopify\Behaviors;
 
 use Hirtz\Cms\Bootstrap;
 use Hirtz\Cms\Models\Entry;
-use Hirtz\Cms\shopify\validators\ProductIdValidator;
-use Hirtz\Shopify\Models\Traits\ProductRelationTrait;
+use Hirtz\Cms\Shopify\validators\ProductIdValidator;
 use Hirtz\Skeleton\Models\Actions\DuplicateActiveRecord;
 use Hirtz\Skeleton\Models\Events\CreateValidatorsEvent;
 use Hirtz\Skeleton\Models\Events\DuplicateActiveRecordEvent;
+use Override;
 use Yii;
 use yii\base\Behavior;
 
@@ -22,9 +22,7 @@ use yii\base\Behavior;
  */
 class EntryProductBehavior extends Behavior
 {
-    use ProductRelationTrait;
-
-    #[\Override]
+    #[Override]
     public function events(): array
     {
         return [

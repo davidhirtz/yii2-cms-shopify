@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Cms\shopify\behaviors;
+namespace Hirtz\Cms\Shopify\Behaviors;
 
 use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Models\Traits\EntryRelationTrait;
 use Hirtz\Cms\Module;
-use Hirtz\Cms\shopify\Bootstrap;
+use Hirtz\Cms\Shopify\Bootstrap;
 use Hirtz\Shopify\Models\Product;
+use Override;
 use Yii;
 use yii\base\Behavior;
 
@@ -22,7 +23,7 @@ class ProductEntryBehavior extends Behavior
 {
     use EntryRelationTrait;
 
-    #[\Override]
+    #[Override]
     public function events(): array
     {
         return [

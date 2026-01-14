@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Cms\shopify;
+namespace Hirtz\Cms\Shopify;
 
+use Hirtz\Cms\Models\Builders\EntrySiteRelationsBuilder;
 use Hirtz\Cms\Models\Entry;
-use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryActiveForm;
-use Hirtz\Cms\shopify\behaviors\EntryProductBehavior;
-use Hirtz\Cms\shopify\behaviors\ProductEntryBehavior;
-use Hirtz\Cms\shopify\widgets\forms\ProductIdFieldBehavior;
+use Hirtz\Cms\Shopify\Behaviors\EntryProductBehavior;
+use Hirtz\Cms\Shopify\Behaviors\ProductEntryBehavior;
+use Hirtz\Cms\Shopify\Events\ProductEntrySiteRelationsBuilderEventHandler;
 use Hirtz\Shopify\Models\Product;
 use Hirtz\Skeleton\Web\Application;
 use yii\base\BootstrapInterface;
@@ -35,12 +35,12 @@ class Bootstrap implements BootstrapInterface
             $product->attachBehavior('ProductEntryBehavior', ProductEntryBehavior::class);
         });
 
-        Event::on(EntryActiveForm::class, BaseActiveRecord::EVENT_INIT, function (Event $event): void {
-            /** @var EntryActiveForm $form */
-            $form = $event->sender;
-            $form->attachBehavior('ProductIdFieldBehavior', ProductIdFieldBehavior::class);
-        });
+        Event::on(
+            EntrySiteRelationsBuilder::class,
+            EntrySiteRelationsBuilder::EVENT_AFTER_LOAD_ENTRIES,
+            new ProductEntrySiteRelationsBuilderEventHandler()
+        );
 
-        $app->setMigrationNamespace('Hirtz\Cms\shopify\Migrations');
+        $app->setMigrationNamespace('Hirtz\Cms\Shopify\Migrations');
     }
 }
