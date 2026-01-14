@@ -15,6 +15,7 @@ use Yii;
  */
 class ProductIdSelectField extends SelectField
 {
+    #[\Override]
     protected function configure(): void
     {
         $this->property ??= 'product_id';
