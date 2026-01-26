@@ -41,7 +41,8 @@ class ProductIdColumn extends DataColumn
      */
     protected function renderDataCellContent($model, $key, $index): string
     {
-        $product = ($this->getProducts()[$model->getAttribute($this->attribute)] ?? null);
+        $productId = $model->getAttribute($this->attribute);
+        $product = $productId ? $this->getProducts()[$productId] ?? null : null;
 
         if (!$product) {
             return '';

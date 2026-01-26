@@ -1,3 +1,7 @@
+## 2.2.2 (Jan 26, 2026)
+
+- PHP 8.5 compatibility fixes
+- 
 ## 2.2.1 (Jan 26, 2026)
 
 - PHP 8.5 compatibility fixes
