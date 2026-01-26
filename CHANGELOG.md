@@ -1,3 +1,7 @@
+## 2.2.1 (Jan 26, 2026)
+
+- PHP 8.5 compatibility fixes
+
 ## 2.2.0 (Jul 28, 2025)
 
 - Added `Entry::$product_id` label
