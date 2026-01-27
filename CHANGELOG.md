@@ -1,3 +1,27 @@
+## 2.2.2 (Jan 26, 2026)
+
+- PHP 8.5 compatibility fixes
+- 
+## 2.2.1 (Jan 26, 2026)
+
+- PHP 8.5 compatibility fixes
+
+## 2.2.0 (Jul 28, 2025)
+
+- Added `Entry::$product_id` label
+- Enhanced `ProductIdValidator` error message to include the product name
+- Enhanced `ProductIdColumn` to display the status icon only if the product status is less than the related product
+
+## 2.1.10 (Mar 26, 2025)
+
+- Added `ProductRelationTrait` to `Entry` and removed it from `EntryProductBehavior`
+- Fixed default variant population in `EntrySiteRelationsBuilder`
+
+## 2.1.9 (Mar 24, 2025)
+
+- Added `EntrySiteRelationsBuilder` config in `Bootstrap` class
+- Fixed bug on empty product relation
+
 ## 2.1.8 (Mar 24, 2025)
 
 - Added example `Entry` model

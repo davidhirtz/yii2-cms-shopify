@@ -43,7 +43,11 @@ class ProductEntryBehavior extends Behavior
     public function onBeforeDelete(): void
     {
         if ($entry = Entry::findOne(['product_id' => $this->owner->id])) {
-            $entry->status = Entry::STATUS_DISABLED;
+            if ($entry->isEnabled()) {
+                $entry->status = Entry::STATUS_DISABLED;
+            }
+
+            $entry->setAttribute('product_id', null);
             $entry->update();
         }
     }
