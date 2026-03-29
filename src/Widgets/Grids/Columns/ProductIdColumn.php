@@ -8,8 +8,8 @@ use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Modules\Admin\Widgets\Grids\EntryGridView;
 use Hirtz\Shopify\Models\Product;
 use Hirtz\Skeleton\Html\A;
-use Hirtz\Skeleton\Html\Icon;
 use Hirtz\Skeleton\Widgets\Grids\Columns\Column;
+use Hirtz\Skeleton\Widgets\Icon;
 use Stringable;
 use Yii;
 
