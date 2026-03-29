@@ -10,6 +10,7 @@ use Hirtz\Shopify\Models\Product;
 use Hirtz\Skeleton\Html\A;
 use Hirtz\Skeleton\Widgets\Grids\Columns\Column;
 use Hirtz\Skeleton\Widgets\Icon;
+use Hirtz\Skeleton\Widgets\Link;
 use Stringable;
 use Yii;
 
@@ -34,7 +35,7 @@ class ProductIdColumn extends Column
             return null;
         }
 
-        $link = A::make()
+        $link = Link::make()
             ->text($product->name)
             ->href($product->getShopifyAdminUrl());
 
