@@ -10,6 +10,7 @@ use Hirtz\Cms\Shopify\Behaviors\EntryProductBehavior;
 use Hirtz\Cms\Shopify\Behaviors\ProductEntryBehavior;
 use Hirtz\Cms\Shopify\Events\ProductEntrySiteRelationsBuilderEventHandler;
 use Hirtz\Shopify\Models\Product;
+use Hirtz\Skeleton\Modules\Admin\Controllers\DashboardController;
 use Hirtz\Skeleton\Web\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Event;
@@ -40,6 +41,10 @@ class Bootstrap implements BootstrapInterface
             EntrySiteRelationsBuilder::EVENT_AFTER_LOAD_ENTRIES,
             new ProductEntrySiteRelationsBuilderEventHandler()
         );
+
+        DashboardController::addRoles([
+            Product::AUTH_PRODUCT_UPDATE,
+        ]);
 
         $app->setMigrationNamespace('Hirtz\Cms\Shopify\Migrations');
     }
