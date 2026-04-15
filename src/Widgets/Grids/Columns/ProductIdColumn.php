@@ -7,7 +7,6 @@ namespace Hirtz\Cms\Shopify\Widgets\Grids\Columns;
 use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Modules\Admin\Widgets\Grids\EntryGridView;
 use Hirtz\Shopify\Models\Product;
-use Hirtz\Skeleton\Html\A;
 use Hirtz\Skeleton\Widgets\Grids\Columns\Column;
 use Hirtz\Skeleton\Widgets\Icon;
 use Hirtz\Skeleton\Widgets\Link;
@@ -25,6 +24,8 @@ class ProductIdColumn extends Column
     {
         $this->content = $this->getContent(...);
         $this->visible = count($this->getProducts()) > 0;
+
+        parent::__construct();
     }
 
     protected function getContent(Entry $entry): ?Stringable
