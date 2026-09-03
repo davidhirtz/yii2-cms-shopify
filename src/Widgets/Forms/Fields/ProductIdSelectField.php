@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Hirtz\Cms\Shopify\Widgets\Forms\Fields;
 
+use Hirtz\Skeleton\I18n\Lang;
 use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryActiveForm;
 use Hirtz\Shopify\Models\Product;
@@ -19,7 +20,7 @@ class ProductIdSelectField extends SelectField
     protected function configure(): void
     {
         $this->property ??= 'product_id';
-        $this->label ??= Yii::t('shopify', 'Product');
+        $this->label ??= Lang::t('shopify', 'COMMON_PRODUCT');
         $this->items ??= $this->getProductIdItems();
 
         parent::configure();

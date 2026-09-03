@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Hirtz\Cms\Shopify\Validators;
 
+use Hirtz\Skeleton\I18n\Lang;
 use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Shopify\Behaviors\EntryProductBehavior;
 use Hirtz\Shopify\Models\Product;
@@ -48,7 +49,7 @@ class ProductIdValidator extends Validator
 
         if ($isTaken) {
             $model->addError($attribute, Yii::t('yii', '{attribute} "{value}" has already been taken.', [
-                'attribute' => Yii::t('shopify', 'Product'),
+                'attribute' => Lang::t('shopify', 'COMMON_PRODUCT'),
                 'value' => $product->name,
             ]));
         }
