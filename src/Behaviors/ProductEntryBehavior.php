@@ -17,7 +17,7 @@ use yii\base\Behavior;
  * ProductEntryBehavior extends {@see Product} by updating related entries on deletion. This behavior is attached on
  * bootstrap by {@see Bootstrap}.
  *
- * @property Product $owner
+ * @extends Behavior<Product>
  */
 class ProductEntryBehavior extends Behavior
 {

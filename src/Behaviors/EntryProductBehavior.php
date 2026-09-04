@@ -18,7 +18,7 @@ use yii\base\Behavior;
  * EntryProductBehavior extends {@see Entry} by providing `product_id` validation. This behavior is attached on module
  * bootstrap by {@see Bootstrap}.
  *
- * @property Entry $owner
+ * @extends Behavior<Entry>
  */
 class EntryProductBehavior extends Behavior
 {
