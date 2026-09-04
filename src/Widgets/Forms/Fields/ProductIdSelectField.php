@@ -21,7 +21,7 @@ class ProductIdSelectField extends SelectField
     {
         $this->property ??= 'product_id';
         $this->label ??= Lang::t('shopify', 'COMMON_PRODUCT');
-        $this->items ??= $this->getProductIdItems();
+        $this->items = $this->items ?: $this->getProductIdItems();
 
         parent::configure();
     }

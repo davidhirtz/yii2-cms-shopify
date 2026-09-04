@@ -42,7 +42,7 @@ class ProductIdColumn extends Column
 
         if ($product->status === $entry->status) {
             if ($product->slug !== $entry->getI18nAttribute('slug')) {
-                $link->icon(Icon::make()
+                $link->icon(fn (Icon $icon) => $icon
                     ->name('exclamation-triangle')
                     ->tooltip(Yii::t('yii', '{attribute} must be equal to "{compareValueOrAttribute}".', [
                         'attribute' => $entry->getAttributeLabel('slug'),
@@ -53,7 +53,7 @@ class ProductIdColumn extends Column
             return $link;
         }
 
-        return $link->icon(Icon::make()
+        return $link->icon(fn (Icon $icon) => $icon
             ->name($product->getStatusIcon())
             ->tooltip($product->getStatusName()));
     }
@@ -63,7 +63,7 @@ class ProductIdColumn extends Column
      */
     protected function getProducts(): array
     {
-        return static::$_products ??= ($productIds = $this->getProductIds())
+        return self::$_products ??= ($productIds = $this->getProductIds())
             ? Product::find()
                 ->select(['id', 'status', 'name', 'slug'])
                 ->andWhere(['id' => $productIds])

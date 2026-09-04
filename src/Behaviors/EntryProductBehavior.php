@@ -6,7 +6,7 @@ namespace Hirtz\Cms\Shopify\Behaviors;
 
 use Hirtz\Cms\Bootstrap;
 use Hirtz\Cms\Models\Entry;
-use Hirtz\Cms\Shopify\validators\ProductIdValidator;
+use Hirtz\Cms\Shopify\Validators\ProductIdValidator;
 use Hirtz\Skeleton\Models\Actions\DuplicateActiveRecord;
 use Hirtz\Skeleton\Models\Events\CreateValidatorsEvent;
 use Hirtz\Skeleton\Models\Events\DuplicateActiveRecordEvent;
