@@ -46,6 +46,9 @@ class ProductEntrySiteRelationsBuilderEventHandlerTest extends TestCase
         self::assertEquals(1, $product->getRelatedRecords()['variant']->id);
     }
 
+    /**
+     * @return EntrySiteRelationsBuilder<\Hirtz\Cms\Models\Entry>
+     */
     private function getEntrySiteRelationsBuilder(): EntrySiteRelationsBuilder
     {
         $entry = Entry::findOne(1);

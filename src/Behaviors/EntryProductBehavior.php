@@ -22,6 +22,9 @@ use yii\base\Behavior;
  */
 class EntryProductBehavior extends Behavior
 {
+    /**
+     * @return array<string, callable>
+     */
     #[Override]
     public function events(): array
     {

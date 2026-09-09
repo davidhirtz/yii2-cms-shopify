@@ -14,10 +14,13 @@ use Stringable;
 use Yii;
 
 /**
- * @property EntryGridView $grid
+ * @extends Column<Entry>
+ *
+ * @property EntryGridView<Entry> $grid
  */
 class ProductIdColumn extends Column
 {
+    /** @var array<int, Product>|null */
     private static ?array $_products = null;
 
     public function __construct(private readonly string $property = 'product_id')
@@ -72,6 +75,9 @@ class ProductIdColumn extends Column
             : [];
     }
 
+    /**
+     * @return array<int, mixed>
+     */
     protected function getProductIds(): array
     {
         $productIds = [];

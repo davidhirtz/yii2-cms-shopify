@@ -26,6 +26,9 @@ class ProductIdSelectField extends SelectField
         parent::configure();
     }
 
+    /**
+     * @return array<int, string>
+     */
     protected function getProductIdItems(): array
     {
         $takenProductIds = $this->getTakenProductIds();
@@ -47,6 +50,9 @@ class ProductIdSelectField extends SelectField
         return $items;
     }
 
+    /**
+     * @return array<int, mixed>
+     */
     protected function getTakenProductIds(): array
     {
         return Entry::find()

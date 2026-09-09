@@ -19,6 +19,7 @@ use yii\validators\Validator;
  */
 class ProductIdValidator extends Validator
 {
+    /** @var string[] */
     public $attributes = ['product_id'];
     public $skipOnEmpty = false;
 

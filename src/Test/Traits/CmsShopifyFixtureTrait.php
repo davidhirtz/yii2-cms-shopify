@@ -16,6 +16,9 @@ trait CmsShopifyFixtureTrait
         ShopifyFixtureTrait::fixtures as protected shopifyFixtures;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function fixtures(): array
     {
         return [
