@@ -21,7 +21,7 @@ use Yii;
 class ProductIdColumn extends Column
 {
     /** @var array<int, Product>|null */
-    private static ?array $_products = null;
+    private static ?array $products = null;
 
     public function __construct(private readonly string $property = 'product_id')
     {
@@ -66,7 +66,7 @@ class ProductIdColumn extends Column
      */
     protected function getProducts(): array
     {
-        return self::$_products ??= ($productIds = $this->getProductIds())
+        return self::$products ??= ($productIds = $this->getProductIds())
             ? Product::find()
                 ->select(['id', 'status', 'name', 'slug'])
                 ->andWhere(['id' => $productIds])
