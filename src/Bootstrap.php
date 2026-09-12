@@ -14,7 +14,6 @@ use Hirtz\Skeleton\Modules\Admin\Controllers\DashboardController;
 use Hirtz\Skeleton\Web\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Event;
-use yii\base\Widget;
 use yii\db\BaseActiveRecord;
 
 class Bootstrap implements BootstrapInterface
@@ -24,7 +23,7 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app): void
     {
-        Event::on(Entry::class, Widget::EVENT_INIT, function (Event $event): void {
+        Event::on(Entry::class, BaseActiveRecord::EVENT_INIT, function (Event $event): void {
             /** @var Entry $entry */
             $entry = $event->sender;
             $entry->attachBehavior('EntryProductBehavior', EntryProductBehavior::class);
