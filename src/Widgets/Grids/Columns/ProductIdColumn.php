@@ -36,7 +36,8 @@ class ProductIdColumn extends Column
 
     protected function getContent(Entry $entry): ?Stringable
     {
-        $product = $this->getProducts()[$entry->getAttribute($this->property)] ?? null;
+        $productId = $entry->getAttribute($this->property);
+        $product = $productId ? $this->getProducts()[$productId] ?? null : null;
 
         if (!$product) {
             return null;
