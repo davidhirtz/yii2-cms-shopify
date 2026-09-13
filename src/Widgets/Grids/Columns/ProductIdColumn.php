@@ -64,6 +64,11 @@ class ProductIdColumn extends Column
     /**
      * @return Product[]
      */
+    public static function reset(): void
+    {
+        self::$products = null;
+    }
+
     protected function getProducts(): array
     {
         return self::$products ??= ($productIds = $this->getProductIds())

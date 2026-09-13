@@ -1,7 +1,12 @@
+## 3.0.0 (in development)
+
+- `Widgets\Grids\Columns\ProductIdColumn::reset()` clears the products the column caches statically, and
+  `Bootstrap` calls it — they outlived the application that loaded them
+
 ## 2.2.2 (Jan 26, 2026)
 
 - PHP 8.5 compatibility fixes
-- 
+
 ## 2.2.1 (Jan 26, 2026)
 
 - PHP 8.5 compatibility fixes

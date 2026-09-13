@@ -9,6 +9,7 @@ use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Shopify\Behaviors\EntryProductBehavior;
 use Hirtz\Cms\Shopify\Behaviors\ProductEntryBehavior;
 use Hirtz\Cms\Shopify\Events\ProductEntrySiteRelationsBuilderEventHandler;
+use Hirtz\Cms\Shopify\Widgets\Grids\Columns\ProductIdColumn;
 use Hirtz\Shopify\Models\Product;
 use Hirtz\Skeleton\Modules\Admin\Controllers\DashboardController;
 use Hirtz\Skeleton\Web\Application;
@@ -23,6 +24,9 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app): void
     {
+        // The cached products outlive the application that loaded them.
+        ProductIdColumn::reset();
+
         Event::on(Entry::class, BaseActiveRecord::EVENT_INIT, function (Event $event): void {
             /** @var Entry $entry */
             $entry = $event->sender;
