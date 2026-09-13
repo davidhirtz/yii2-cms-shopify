@@ -42,7 +42,7 @@ class Bootstrap implements BootstrapInterface
         );
 
         DashboardController::addRoles([
-            Product::AUTH_PRODUCT_UPDATE,
+            Product::AUTH_SHOPIFY_PRODUCT,
         ]);
 
         $app->setMigrationNamespace('Hirtz\Cms\Shopify\Migrations');
