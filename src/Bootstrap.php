@@ -16,6 +16,8 @@ use Hirtz\Cms\Shopify\Widgets\Grids\Columns\ProductIdColumn;
 use Hirtz\Shopify\Models\Product;
 use Hirtz\Skeleton\Modules\Admin\Controllers\DashboardController;
 use Hirtz\Skeleton\Web\Application;
+use Hirtz\Skeleton\Widgets\Forms\Fields\Field;
+use Hirtz\Skeleton\Widgets\Grids\Columns\DataColumn;
 use Hirtz\Skeleton\Widgets\Widget;
 use yii\base\BootstrapInterface;
 use yii\base\Event;
@@ -88,7 +90,7 @@ class Bootstrap implements BootstrapInterface
 
     /**
      * `rows` is either a flat list of fields or a list of groups, and the product belongs beside the entry's own
-     * attributes — the first group.
+     * name — so the group holding the name field is the one that gets it.
      *
      * @param array<mixed> $rows
      * @return array<mixed>
@@ -96,31 +98,66 @@ class Bootstrap implements BootstrapInterface
     private static function addProductIdField(array $rows): array
     {
         $field = ProductIdSelectField::make();
-        $first = current($rows);
 
-        if (is_array($first)) {
-            $key = key($rows);
-            $rows[$key] = [...$first, $field];
-
-            return $rows;
+        if (!is_array(current($rows))) {
+            return self::insertAfterName($rows, $field);
         }
 
-        return [...$rows, $field];
+        foreach ($rows as $key => $group) {
+            if (is_array($group) && self::indexOfName($group) !== null) {
+                $rows[$key] = self::insertAfterName($group, $field);
+                return $rows;
+            }
+        }
+
+        $key = array_key_first($rows);
+        $rows[$key] = [...(array)$rows[$key], $field];
+
+        return $rows;
     }
 
     /**
-     * Before the button column, which every grid here keeps last.
-     *
      * @param array<mixed> $columns
      * @return array<mixed>
      */
     private static function addProductIdColumn(array $columns): array
     {
-        $column = ProductIdColumn::make();
-        $last = array_pop($columns);
+        return self::insertAfterName($columns, ProductIdColumn::make());
+    }
 
-        return $last === null
-            ? [$column]
-            : [...$columns, $column, $last];
+    /**
+     * The name is what the product belongs next to, and `Widgets\Traits\PropertyTrait` is the only thing that
+     * identifies a column or a field from outside. Only the two classes that use it are asked: another column may
+     * well declare a `property` of its own, privately.
+     *
+     * @param array<mixed> $items
+     * @return array<mixed>
+     */
+    private static function insertAfterName(array $items, object $item): array
+    {
+        $items = array_values($items);
+        $index = self::indexOfName($items);
+
+        if ($index === null) {
+            return [...$items, $item];
+        }
+
+        array_splice($items, $index + 1, 0, [$item]);
+
+        return $items;
+    }
+
+    /**
+     * @param array<mixed> $items
+     */
+    private static function indexOfName(array $items): ?int
+    {
+        foreach (array_values($items) as $index => $existing) {
+            if (($existing instanceof DataColumn || $existing instanceof Field) && $existing->property === 'name') {
+                return $index;
+            }
+        }
+
+        return null;
     }
 }

@@ -8,7 +8,15 @@ use Hirtz\Cms\Models\Entry as CmsEntry;
 use Hirtz\Cms\Shopify\Models\Entry;
 use Hirtz\Cms\Shopify\Test\TestCase;
 use Hirtz\Cms\Shopify\Test\Traits\CmsShopifyFixtureTrait;
+use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryActiveForm;
+use Hirtz\Cms\Modules\Admin\Widgets\Grids\EntryGridView;
+use Hirtz\Cms\Shopify\Widgets\Forms\Fields\ProductIdSelectField;
+use Hirtz\Cms\Shopify\Widgets\Grids\Columns\ProductIdColumn;
 use Hirtz\Shopify\Models\Product;
+use Hirtz\Skeleton\Widgets\Forms\Fields\Field;
+use Hirtz\Skeleton\Widgets\Grids\Columns\DataColumn;
+use Hirtz\Skeleton\Widgets\Widget;
+use yii\base\Event;
 use Hirtz\Shopify\Test\Fixtures\ProductFixture;
 use Hirtz\Shopify\Test\Fixtures\ProductImageFixture;
 use Hirtz\Shopify\Test\Fixtures\ProductVariantFixture;
@@ -73,6 +81,82 @@ class EntryAdminWidgetsTest extends TestCase
         self::assertStringContainsString('>' . $this->getProductFromFixture('product-2')->name . '<', $html);
     }
 
+    /**
+     * The product names the entry, so it belongs directly after the name rather than at the end of the form.
+     * Read off the form itself, as the column test does: a later listener is handed the rows the bundle's own
+     * already contributed to.
+     */
+    public function testTheFieldFollowsTheNameField(): void
+    {
+        $this->login();
+
+        $properties = [];
+
+        Event::on(
+            EntryActiveForm::class,
+            Widget::EVENT_CONFIGURE,
+            static function (Event $event) use (&$properties): void {
+                $event->sender->rows(static function (array $rows) use (&$properties): array {
+                    foreach ($rows as $group) {
+                        foreach (is_array($group) ? $group : [$group] as $field) {
+                            if (!$field) {
+                                // A field the entry does not have; `Fieldset` drops these before rendering.
+                                continue;
+                            }
+
+                            // A field sets its own `property` in `configure()`, which has not run yet.
+                            $properties[] = $field instanceof Field && $field->property
+                                ? $field->property
+                                : $field::class;
+                        }
+                    }
+
+                    return $rows;
+                });
+            }
+        );
+
+        Yii::$app->runAction('admin/cms/entry/update', ['id' => 1]);
+
+        $name = array_search('name', $properties, true);
+        $product = array_search(ProductIdSelectField::class, $properties, true);
+
+        self::assertIsInt($name, implode(', ', $properties));
+        self::assertSame($name + 1, $product, implode(', ', $properties));
+    }
+
+    /**
+     * An entry does not have to stand for a product, and the empty option is how one is unlinked again.
+     */
+    public function testTheFieldOffersAnEmptyOption(): void
+    {
+        $this->login();
+
+        $html = Yii::$app->runAction('admin/cms/entry/update', ['id' => 1]);
+
+        self::assertIsString($html);
+
+        $select = $this->getProductSelect($html);
+
+        self::assertStringContainsString('<option></option>', $select);
+        self::assertStringNotContainsString('disabled', $select);
+    }
+
+    public function testTheProductIsUnlinkedThroughTheEmptyOption(): void
+    {
+        $this->login();
+
+        $product = $this->getProductFromFixture('product-1');
+        $entry = Entry::findOne(1);
+        $entry->product_id = $product->id;
+
+        self::assertSame(1, $entry->update(), print_r($entry->getErrors(), true));
+
+        $this->submit($entry, '');
+
+        self::assertNull(Entry::findOne(1)->product_id);
+    }
+
     public function testTheProductIsSavedThroughTheForm(): void
     {
         $this->login();
@@ -117,6 +201,47 @@ class EntryAdminWidgetsTest extends TestCase
     }
 
     /**
+     * Read off the grid itself rather than the markup: a later listener is handed the columns the bundle's own
+     * already contributed to, which is the contract a project relies on to reorder them.
+     */
+    public function testTheColumnFollowsTheNameColumn(): void
+    {
+        $this->login();
+
+        $entry = Entry::findOne(1);
+        $entry->product_id = $this->getProductFromFixture('product-1')->id;
+
+        self::assertSame(1, $entry->update(), print_r($entry->getErrors(), true));
+
+        $columns = [];
+
+        Event::on(
+            EntryGridView::class,
+            Widget::EVENT_CONFIGURE,
+            static function (Event $event) use (&$columns): void {
+                $event->sender->columns(static function (array $current) use (&$columns): array {
+                    $columns = array_map(
+                        static fn (mixed $column): string => $column instanceof DataColumn
+                            ? (string)$column->property
+                            : (is_object($column) ? $column::class : (string)$column),
+                        $current
+                    );
+
+                    return $current;
+                });
+            }
+        );
+
+        Yii::$app->runAction('admin/cms/entry/index');
+
+        $name = array_search('name', $columns, true);
+        $product = array_search(ProductIdColumn::class, $columns, true);
+
+        self::assertIsInt($name, implode(', ', $columns));
+        self::assertSame($name + 1, $product, implode(', ', $columns));
+    }
+
+    /**
      * The column is only worth a table cell once an entry on the page actually points at a product.
      */
     public function testTheColumnIsHiddenWhileNoEntryHasAProduct(): void
@@ -133,6 +258,42 @@ class EntryAdminWidgetsTest extends TestCase
         // The grid rendered the entry, and no product cell with it.
         self::assertStringContainsString($entry->name, $html);
         self::assertStringNotContainsString($this->getProductFromFixture('product-1')->name, $html);
+    }
+
+    /**
+     * The select of the product field, from its opening tag to its closing one.
+     */
+    private function getProductSelect(string $html): string
+    {
+        $start = strpos($html, 'name="Entry[product_id]"');
+        self::assertIsInt($start);
+
+        $start = strrpos(substr($html, 0, $start), '<select');
+        self::assertIsInt($start);
+
+        $end = strpos($html, '</select>', $start);
+        self::assertIsInt($end);
+
+        return substr($html, $start, $end - $start);
+    }
+
+    private function submit(Entry $entry, string $productId): void
+    {
+        $_SERVER['REQUEST_METHOD'] = 'POST';
+
+        $request = Yii::$app->getRequest();
+        $request->setBodyParams([
+            'Entry' => [
+                'status' => $entry->status,
+                'type' => $entry->type,
+                'name' => $entry->name,
+                'slug' => $entry->slug,
+                'product_id' => $productId,
+            ],
+            $request->csrfParam => $request->getCsrfToken(),
+        ]);
+
+        Yii::$app->runAction('admin/cms/entry/update', ['id' => $entry->id]);
     }
 
     private function login(): User

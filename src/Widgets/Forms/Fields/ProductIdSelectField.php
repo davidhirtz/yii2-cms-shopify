@@ -15,6 +15,11 @@ use Yii;
  */
 class ProductIdSelectField extends SelectField
 {
+    /**
+     * An entry does not have to stand for a product, and the empty option is how one is unlinked again.
+     */
+    protected string|false $prompt = '';
+
     #[\Override]
     protected function configure(): void
     {
