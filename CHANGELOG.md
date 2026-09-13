@@ -1,5 +1,12 @@
 ## 3.0.0 (in development)
 
+- **`Bootstrap` adds the product field and column to the cms entry admin itself.** A
+  `Widget::EVENT_CONFIGURE` listener puts `Widgets\Forms\Fields\ProductIdSelectField` into the entry form and
+  `Widgets\Grids\Columns\ProductIdColumn` before the button column of the entry grid, so an entry is linked to
+  a product without a project subclassing `EntryActiveForm` and `EntryGridView`. The listener runs after the
+  widget's own defaults and before the caller's `prepare()`, so a project still has the last word
+- `ProductIdColumn` decides its visibility in a closure rather than in its constructor. It counted the products of
+  the grid's provider before the grid was bound to it, so building the column threw whatever added it
 - `Widgets\Grids\Columns\ProductIdColumn::reset()` clears the products the column caches statically, and
   `Bootstrap` calls it — they outlived the application that loaded them
 

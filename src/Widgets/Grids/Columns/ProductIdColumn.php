@@ -26,7 +26,10 @@ class ProductIdColumn extends Column
     public function __construct(private readonly string $property = 'product_id')
     {
         $this->content = $this->getContent(...);
-        $this->visible = count($this->getProducts()) > 0;
+
+        // A closure, not a value: the grid is bound after the column is built, and the products are read off its
+        // provider. `ensureColumns()` asks once the binding is done.
+        $this->visible = fn (): bool => count($this->getProducts()) > 0;
 
         parent::__construct();
     }
