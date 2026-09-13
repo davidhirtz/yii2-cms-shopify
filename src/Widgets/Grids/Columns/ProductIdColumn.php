@@ -61,14 +61,14 @@ class ProductIdColumn extends Column
             ->tooltip($product->getStatusName()));
     }
 
-    /**
-     * @return Product[]
-     */
     public static function reset(): void
     {
         self::$products = null;
     }
 
+    /**
+     * @return Product[]
+     */
     protected function getProducts(): array
     {
         return self::$products ??= ($productIds = $this->getProductIds())
