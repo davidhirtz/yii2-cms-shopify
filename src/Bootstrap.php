@@ -50,7 +50,7 @@ class Bootstrap implements BootstrapInterface
 
         $this->addEntryAdminWidgets();
 
-        DashboardController::addRoles([
+        DashboardController::addRoles(static fn (): array => [
             Product::AUTH_SHOPIFY_PRODUCT,
         ]);
 
