@@ -30,9 +30,6 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app): void
     {
-        // The cached products outlive the application that loaded them.
-        ProductIdColumn::reset();
-
         Event::on(Entry::class, BaseActiveRecord::EVENT_INIT, function (Event $event): void {
             /** @var Entry $entry */
             $entry = $event->sender;

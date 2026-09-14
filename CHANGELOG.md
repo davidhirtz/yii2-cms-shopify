@@ -9,8 +9,10 @@
   how one is unlinked again
 - `ProductIdColumn` decides its visibility in a closure rather than in its constructor. It counted the products of
   the grid's provider before the grid was bound to it, so building the column threw whatever added it
-- `Widgets\Grids\Columns\ProductIdColumn::reset()` clears the products the column caches statically, and
-  `Bootstrap` calls it — they outlived the application that loaded them
+- `Widgets\Grids\Columns\ProductIdColumn` keeps the products it loaded on the column rather than in a static,
+  and `ProductIdColumn::reset()` is gone with it, as is the `Bootstrap` call that cleared it. The static was keyed
+  to nothing, so a second entry grid in the same request reported the products of the first — and a first grid
+  holding none hid the column for every grid after it
 
 ## 2.2.2 (Jan 26, 2026)
 

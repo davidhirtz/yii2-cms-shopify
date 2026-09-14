@@ -201,6 +201,30 @@ class EntryAdminWidgetsTest extends TestCase
     }
 
     /**
+     * The products a column loaded are its own memo of the rows its grid holds, never the request's: as a static
+     * they outlived both, and a second grid rendered the first one's products.
+     */
+    public function testASecondGridLoadsItsOwnProducts(): void
+    {
+        $this->login();
+
+        // the first grid holds no product at all, and used to be the set the second one reported
+        Yii::$app->runAction('admin/cms/entry/index');
+
+        $product = $this->getProductFromFixture('product-1');
+
+        $entry = Entry::findOne(1);
+        $entry->product_id = $product->id;
+
+        self::assertSame(1, $entry->update(), print_r($entry->getErrors(), true));
+
+        $html = Yii::$app->runAction('admin/cms/entry/index');
+
+        self::assertIsString($html);
+        self::assertStringContainsString($product->name, $html);
+    }
+
+    /**
      * Read off the grid itself rather than the markup: a later listener is handed the columns the bundle's own
      * already contributed to, which is the contract a project relies on to reorder them.
      */
