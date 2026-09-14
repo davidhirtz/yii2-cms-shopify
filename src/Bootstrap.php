@@ -14,6 +14,7 @@ use Hirtz\Cms\Shopify\Events\ProductEntrySiteRelationsBuilderEventHandler;
 use Hirtz\Cms\Shopify\Widgets\Forms\Fields\ProductIdSelectField;
 use Hirtz\Cms\Shopify\Widgets\Grids\Columns\ProductIdColumn;
 use Hirtz\Shopify\Models\Product;
+use Hirtz\Skeleton\Helpers\EventHelper;
 use Hirtz\Skeleton\Modules\Admin\Controllers\DashboardController;
 use Hirtz\Skeleton\Web\Application;
 use Hirtz\Skeleton\Widgets\Forms\Fields\Field;
@@ -30,17 +31,17 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app): void
     {
-        Event::on(Entry::class, BaseActiveRecord::EVENT_INIT, function (Event $event): void {
-            /** @var Entry $entry */
-            $entry = $event->sender;
-            $entry->attachBehavior('EntryProductBehavior', EntryProductBehavior::class);
-        });
+        EventHelper::on(
+            Entry::class,
+            BaseActiveRecord::EVENT_INIT,
+            static fn (Entry $entry) => $entry->attachBehavior('EntryProductBehavior', EntryProductBehavior::class)
+        );
 
-        Event::on(Product::class, BaseActiveRecord::EVENT_INIT, function (Event $event): void {
-            /** @var Product $product */
-            $product = $event->sender;
-            $product->attachBehavior('ProductEntryBehavior', ProductEntryBehavior::class);
-        });
+        EventHelper::on(
+            Product::class,
+            BaseActiveRecord::EVENT_INIT,
+            static fn (Product $product) => $product->attachBehavior('ProductEntryBehavior', ProductEntryBehavior::class)
+        );
 
         Event::on(
             EntrySiteRelationsBuilder::class,
@@ -64,24 +65,20 @@ class Bootstrap implements BootstrapInterface
      */
     protected function addEntryAdminWidgets(): void
     {
-        Event::on(
+        EventHelper::on(
             EntryActiveForm::class,
             Widget::EVENT_CONFIGURE,
-            static function (Event $event): void {
-                /** @var EntryActiveForm $form */
-                $form = $event->sender;
-                $form->rows(static fn (array $rows): array => self::addProductIdField($rows));
-            }
+            static fn (EntryActiveForm $form) => $form->rows(
+                static fn (array $rows): array => self::addProductIdField($rows)
+            )
         );
 
-        Event::on(
+        EventHelper::on(
             EntryGridView::class,
             Widget::EVENT_CONFIGURE,
-            static function (Event $event): void {
-                /** @var EntryGridView<Entry> $grid */
-                $grid = $event->sender;
-                $grid->columns(static fn (array $columns): array => self::addProductIdColumn($columns));
-            }
+            static fn (EntryGridView $grid) => $grid->columns(
+                static fn (array $columns): array => self::addProductIdColumn($columns)
+            )
         );
     }
 
