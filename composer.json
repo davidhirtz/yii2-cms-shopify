@@ -12,8 +12,8 @@
   ],
   "require": {
     "php": "^8.3",
-    "davidhirtz/yii2-cms": "next-dev",
-    "davidhirtz/yii2-shopify": "next-dev",
+    "davidhirtz/yii2-cms": "main-dev",
+    "davidhirtz/yii2-shopify": "main-dev",
     "moneyphp/money": "^4.7"
   },
   "require-dev": {
