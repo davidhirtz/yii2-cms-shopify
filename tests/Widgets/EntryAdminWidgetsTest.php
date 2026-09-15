@@ -10,7 +10,6 @@ use Hirtz\Cms\Shopify\Test\TestCase;
 use Hirtz\Cms\Shopify\Test\Traits\CmsShopifyFixtureTrait;
 use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryActiveForm;
 use Hirtz\Cms\Modules\Admin\Widgets\Grids\EntryGridView;
-use Hirtz\Cms\Shopify\Widgets\Forms\Fields\ProductIdSelectField;
 use Hirtz\Cms\Shopify\Widgets\Grids\Columns\ProductIdColumn;
 use Hirtz\Shopify\Models\Product;
 use Hirtz\Skeleton\Widgets\Forms\Fields\Field;
@@ -106,7 +105,6 @@ class EntryAdminWidgetsTest extends TestCase
                                 continue;
                             }
 
-                            // A field sets its own `property` in `configure()`, which has not run yet.
                             $properties[] = $field instanceof Field && $field->property
                                 ? $field->property
                                 : $field::class;
@@ -121,7 +119,7 @@ class EntryAdminWidgetsTest extends TestCase
         Yii::$app->runAction('admin/cms/entry/update', ['id' => 1]);
 
         $name = array_search('name', $properties, true);
-        $product = array_search(ProductIdSelectField::class, $properties, true);
+        $product = array_search('product_id', $properties, true);
 
         self::assertIsInt($name, implode(', ', $properties));
         self::assertSame($name + 1, $product, implode(', ', $properties));

@@ -15,6 +15,8 @@ use Yii;
  */
 class ProductIdSelectField extends SelectField
 {
+    public ?string $property = 'product_id';
+
     /**
      * An entry does not have to stand for a product, and the empty option is how one is unlinked again.
      */
@@ -23,7 +25,6 @@ class ProductIdSelectField extends SelectField
     #[\Override]
     protected function configure(): void
     {
-        $this->property ??= 'product_id';
         $this->label ??= Yii::t('shopify', 'COMMON_PRODUCT');
         $this->items = $this->items ?: $this->getProductIdItems();
 
