@@ -166,7 +166,7 @@ class EntryAdminWidgetsTest extends TestCase
 
         $_SERVER['REQUEST_METHOD'] = 'POST';
 
-        $request = Yii::$app->getRequest();
+        $request = $this->getWebRequest();
         $request->setBodyParams([
             'Entry' => [
                 'status' => $entry->status,
@@ -305,7 +305,7 @@ class EntryAdminWidgetsTest extends TestCase
     {
         $_SERVER['REQUEST_METHOD'] = 'POST';
 
-        $request = Yii::$app->getRequest();
+        $request = $this->getWebRequest();
         $request->setBodyParams([
             'Entry' => [
                 'status' => $entry->status,
@@ -332,7 +332,7 @@ class EntryAdminWidgetsTest extends TestCase
             $auth->assign($auth->getPermission($permission), $user->id);
         }
 
-        Yii::$app->getUser()->setIdentity($user);
+        $this->getWebUser()->setIdentity($user);
 
         return $user;
     }
