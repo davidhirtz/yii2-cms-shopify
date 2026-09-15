@@ -96,6 +96,8 @@ class EntryAdminWidgetsTest extends TestCase
             EntryActiveForm::class,
             Widget::EVENT_CONFIGURE,
             static function (Event $event) use (&$properties): void {
+                self::assertInstanceOf(EntryActiveForm::class, $event->sender);
+
                 $event->sender->rows(static function (array $rows) use (&$properties): array {
                     foreach ($rows as $group) {
                         foreach (is_array($group) ? $group : [$group] as $field) {
@@ -243,6 +245,8 @@ class EntryAdminWidgetsTest extends TestCase
             EntryGridView::class,
             Widget::EVENT_CONFIGURE,
             static function (Event $event) use (&$columns): void {
+                self::assertInstanceOf(EntryGridView::class, $event->sender);
+
                 $event->sender->columns(static function (array $current) use (&$columns): array {
                     $columns = array_map(
                         static fn (mixed $column): string => $column instanceof DataColumn
