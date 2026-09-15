@@ -138,7 +138,7 @@ class EntryAdminWidgetsTest extends TestCase
 
         $select = $this->getProductSelect($html);
 
-        self::assertStringContainsString('<option></option>', $select);
+        self::assertStringContainsString('<option value=""></option>', $select);
         self::assertStringNotContainsString('disabled', $select);
     }
 
