@@ -47,7 +47,7 @@ class ProductEntrySiteRelationsBuilderEventHandlerTest extends TestCase
     }
 
     /**
-     * @return EntrySiteRelationsBuilder<\Hirtz\Cms\Models\Entry>
+     * @return EntrySiteRelationsBuilder
      */
     private function getEntrySiteRelationsBuilder(): EntrySiteRelationsBuilder
     {
