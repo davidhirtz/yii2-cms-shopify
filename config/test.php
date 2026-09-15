@@ -2,14 +2,10 @@
 
 declare(strict_types=1);
 
-use Hirtz\Cms\Shopify\Bootstrap;
-
 $basePath = (getenv('BASE_PATH') ?: getcwd());
-$config = require("$basePath/vendor/davidhirtz/yii2-shopify/config/test.php");
 
-return [
-    ...$config,
-//    'bootstrap' => [
-//        Bootstrap::class,
-//    ],
-];
+// The shopify one, since it carries the API credentials the component insists on.
+//
+// No `bootstrap` key: composer's `extra.bootstrap` reaches every bundle through `vendor/yiisoft/extensions.php`,
+// so naming one here would run it a second time and register its event handlers twice.
+return require("$basePath/vendor/davidhirtz/yii2-shopify/config/test.php");
