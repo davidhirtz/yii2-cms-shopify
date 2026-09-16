@@ -8,6 +8,7 @@ use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryActiveForm;
 use Hirtz\Shopify\Models\Product;
 use Hirtz\Skeleton\Widgets\Forms\Fields\SelectField;
+use Override;
 use Yii;
 
 /**
@@ -22,7 +23,7 @@ class ProductIdSelectField extends SelectField
      */
     protected string|false $prompt = '';
 
-    #[\Override]
+    #[Override]
     protected function configure(): void
     {
         $this->label ??= Yii::t('shopify', 'COMMON_PRODUCT');
