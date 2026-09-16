@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Hirtz\Cms\Shopify;
 
-use Hirtz\Cms\Models\Builders\EntrySiteRelationsBuilder;
+use Hirtz\Cms\Models\Actions\PreloadEntrySiteRelations;
 use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryActiveForm;
 use Hirtz\Skeleton\Widgets\Forms\Fieldset;
 use Hirtz\Cms\Modules\Admin\Widgets\Grids\EntryGridView;
 use Hirtz\Cms\Shopify\Behaviors\EntryProductBehavior;
 use Hirtz\Cms\Shopify\Behaviors\ProductEntryBehavior;
-use Hirtz\Cms\Shopify\Events\ProductEntrySiteRelationsBuilderEventHandler;
+use Hirtz\Cms\Shopify\Events\ProductEntrySiteRelationsEventHandler;
 use Hirtz\Cms\Shopify\Widgets\Forms\Fields\ProductIdSelectField;
 use Hirtz\Cms\Shopify\Widgets\Grids\Columns\ProductIdColumn;
 use Hirtz\Shopify\Models\Product;
@@ -45,9 +45,9 @@ class Bootstrap implements BootstrapInterface
         );
 
         Event::on(
-            EntrySiteRelationsBuilder::class,
-            EntrySiteRelationsBuilder::EVENT_AFTER_LOAD_ENTRIES,
-            new ProductEntrySiteRelationsBuilderEventHandler()
+            PreloadEntrySiteRelations::class,
+            PreloadEntrySiteRelations::EVENT_AFTER_LOAD_ENTRIES,
+            new ProductEntrySiteRelationsEventHandler()
         );
 
         $this->addEntryAdminWidgets();

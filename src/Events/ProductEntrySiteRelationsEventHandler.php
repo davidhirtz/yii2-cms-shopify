@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Hirtz\Cms\Shopify\Events;
 
-use Hirtz\Cms\Models\Events\EntrySiteRelationsBuilderEvent;
+use Hirtz\Cms\Models\Events\EntrySiteRelationsEvent;
 use Hirtz\Shopify\Models\Product;
 use Yii;
 
-class ProductEntrySiteRelationsBuilderEventHandler
+class ProductEntrySiteRelationsEventHandler
 {
-    public function __invoke(EntrySiteRelationsBuilderEvent $event): void
+    public function __invoke(EntrySiteRelationsEvent $event): void
     {
         $autoloadVariants = Yii::$container->getDefinitions()[self::class]['autoloadVariants'] ?? false;
         $productIds = [];

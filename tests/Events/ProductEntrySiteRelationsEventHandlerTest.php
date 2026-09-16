@@ -4,26 +4,26 @@ declare(strict_types=1);
 
 namespace Hirtz\Cms\Shopify\Tests\Events;
 
-use Hirtz\Cms\Models\Builders\EntrySiteRelationsBuilder;
-use Hirtz\Cms\Shopify\Events\ProductEntrySiteRelationsBuilderEventHandler;
+use Hirtz\Cms\Models\Actions\PreloadEntrySiteRelations;
+use Hirtz\Cms\Shopify\Events\ProductEntrySiteRelationsEventHandler;
 use Hirtz\Cms\Shopify\Models\Entry;
 use Hirtz\Cms\Shopify\Test\TestCase;
 use Hirtz\Cms\Shopify\Test\Traits\CmsShopifyFixtureTrait;
 use Hirtz\Shopify\Models\Product;
 use Yii;
 
-class ProductEntrySiteRelationsBuilderEventHandlerTest extends TestCase
+class ProductEntrySiteRelationsEventHandlerTest extends TestCase
 {
     use CmsShopifyFixtureTrait;
 
     public function testProductsWithoutVariants(): void
     {
-        $builder = $this->getEntrySiteRelationsBuilder();
+        $preload = $this->createPreload();
 
-        self::assertArrayHasKey('product', $builder->entry->getRelatedRecords());
+        self::assertArrayHasKey('product', $preload->entry->getRelatedRecords());
 
         /** @var Product $product */
-        $product = $builder->entry->getRelatedRecords()['product'];
+        $product = $preload->entry->getRelatedRecords()['product'];
 
         self::assertFalse($product->isRelationPopulated('variants'));
         self::assertEquals(1, $product->getRelatedRecords()['variant']->id);
@@ -31,31 +31,31 @@ class ProductEntrySiteRelationsBuilderEventHandlerTest extends TestCase
 
     public function testProductsWithVariants(): void
     {
-        Yii::$container->set(ProductEntrySiteRelationsBuilderEventHandler::class, [
+        Yii::$container->set(ProductEntrySiteRelationsEventHandler::class, [
             'autoloadVariants' => true,
         ]);
 
-        $builder = $this->getEntrySiteRelationsBuilder();
+        $preload = $this->createPreload();
 
-        self::assertArrayHasKey('product', $builder->entry->getRelatedRecords());
+        self::assertArrayHasKey('product', $preload->entry->getRelatedRecords());
 
         /** @var Product $product */
-        $product = $builder->entry->getRelatedRecords()['product'];
+        $product = $preload->entry->getRelatedRecords()['product'];
 
         self::assertTrue($product->isRelationPopulated('variants'));
         self::assertEquals(1, $product->getRelatedRecords()['variant']->id);
     }
 
     /**
-     * @return EntrySiteRelationsBuilder
+     * @return PreloadEntrySiteRelations
      */
-    private function getEntrySiteRelationsBuilder(): EntrySiteRelationsBuilder
+    private function createPreload(): PreloadEntrySiteRelations
     {
         $entry = Entry::findOne(1);
         $data = $this->getProductFixtureData('product-1');
         $entry->product_id = $data['id'];
 
-        return new EntrySiteRelationsBuilder([
+        return new PreloadEntrySiteRelations([
             'entry' => $entry,
         ]);
     }

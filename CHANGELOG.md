@@ -1,6 +1,19 @@
 ## 3.0.0 (in development)
 
-- `Events\ProductEntrySiteRelationsBuilderEventHandler` no longer answers a 500 for an entry whose `product_id`
+- **`Events\ProductEntrySiteRelationsBuilderEventHandler` is `Events\ProductEntrySiteRelationsEventHandler`**,
+  following the cms rename of `Models\Builders\EntrySiteRelationsBuilder` to
+  `Models\Actions\PreloadEntrySiteRelations` (monorepo issue #136). The handler reads `autoloadVariants` off its
+  own container definition through `self::class`, so a project setting that option renames the key with it:
+
+  ```php
+  'container' => [
+      'definitions' => [
+          ProductEntrySiteRelationsEventHandler::class => ['autoloadVariants' => true],
+      ],
+  ],
+  ```
+
+- `Events\ProductEntrySiteRelationsEventHandler` no longer answers a 500 for an entry whose `product_id`
   or `variant_id` is empty, which is the default: both were array offsets, and `null` is not a legal one. Its
   `reset()` also read a relation by reference, which is an `Indirect modification of overloaded property`
   notice (monorepo issue #129).
