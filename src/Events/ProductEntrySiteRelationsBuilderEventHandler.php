@@ -32,15 +32,20 @@ class ProductEntrySiteRelationsBuilderEventHandler
                 ->all();
         }
 
+        // An entry names neither by default, and `null` is not a legal array offset.
         foreach ($event->sender->entries as $entry) {
-            $product = $products[$entry->getAttribute('product_id')] ?? null;
+            $productId = $entry->getAttribute('product_id');
+            $product = $productId === null ? null : $products[$productId] ?? null;
+
             $entry->populateRelation('product', $product);
 
             if ($product?->isRelationPopulated('variants')) {
-                $variant = $product->variants[$entry->getAttribute('variant_id')]
-                    ?? (reset($product->variants) ?: null);
+                // read into a local: `reset()` takes its argument by reference, which a relation cannot answer
+                $variants = $product->variants;
+                $variantId = $entry->getAttribute('variant_id');
+                $variant = $variantId === null ? null : $variants[$variantId] ?? null;
 
-                $product->populateRelation('variant', $variant);
+                $product->populateRelation('variant', $variant ?? (reset($variants) ?: null));
             }
         }
     }

@@ -1,5 +1,10 @@
 ## 3.0.0 (in development)
 
+- `Events\ProductEntrySiteRelationsBuilderEventHandler` no longer answers a 500 for an entry whose `product_id`
+  or `variant_id` is empty, which is the default: both were array offsets, and `null` is not a legal one. Its
+  `reset()` also read a relation by reference, which is an `Indirect modification of overloaded property`
+  notice (monorepo issue #129).
+
 - `Bootstrap` places the product field through the fieldset that holds the entry's name field, rather than guessing
   at the shape of `ActiveForm::$rows`. Behaviour is unchanged; the skeleton normalizes the rows now (monorepo issue
   #120).
