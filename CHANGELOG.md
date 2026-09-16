@@ -1,5 +1,9 @@
 ## 3.0.0 (in development)
 
+- `Bootstrap` places the product field through the fieldset that holds the entry's name field, rather than guessing
+  at the shape of `ActiveForm::$rows`. Behaviour is unchanged; the skeleton normalizes the rows now (monorepo issue
+  #120).
+
 - **`Bootstrap` adds the product field and column to the cms entry admin itself.** A
   `Widget::EVENT_CONFIGURE` listener puts `Widgets\Forms\Fields\ProductIdSelectField` and
   `Widgets\Grids\Columns\ProductIdColumn` directly after the entry's name field and name column, so an entry is

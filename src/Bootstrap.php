@@ -7,6 +7,7 @@ namespace Hirtz\Cms\Shopify;
 use Hirtz\Cms\Models\Builders\EntrySiteRelationsBuilder;
 use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryActiveForm;
+use Hirtz\Skeleton\Widgets\Forms\Fieldset;
 use Hirtz\Cms\Modules\Admin\Widgets\Grids\EntryGridView;
 use Hirtz\Cms\Shopify\Behaviors\EntryProductBehavior;
 use Hirtz\Cms\Shopify\Behaviors\ProductEntryBehavior;
@@ -69,7 +70,7 @@ class Bootstrap implements BootstrapInterface
             EntryActiveForm::class,
             Widget::EVENT_CONFIGURE,
             static fn (EntryActiveForm $form) => $form->rows(
-                static fn (array $rows): array => self::addProductIdField($rows)
+                static fn (array $fieldsets): array => self::addProductIdField($fieldsets)
             )
         );
 
@@ -83,31 +84,28 @@ class Bootstrap implements BootstrapInterface
     }
 
     /**
-     * `rows` is either a flat list of fields or a list of groups, and the product belongs beside the entry's own
-     * name — so the group holding the name field is the one that gets it.
+     * The product belongs beside the entry's own name, so the fieldset holding the name field is the one that gets
+     * it — and the first one otherwise, since a project may have replaced the name field with something else.
      *
-     * @param array<mixed> $rows
-     * @return array<mixed>
+     * @param list<Fieldset> $fieldsets
+     * @return list<Fieldset>
      */
-    private static function addProductIdField(array $rows): array
+    private static function addProductIdField(array $fieldsets): array
     {
         $field = ProductIdSelectField::make();
 
-        if (!is_array(current($rows))) {
-            return self::insertAfterName($rows, $field);
-        }
-
-        foreach ($rows as $key => $group) {
-            if (is_array($group) && self::indexOfName($group) !== null) {
-                $rows[$key] = self::insertAfterName($group, $field);
-                return $rows;
+        foreach ($fieldsets as $fieldset) {
+            if (self::indexOfName($fieldset->getRows()) !== null) {
+                $fieldset->rows(static fn (array $rows): array => self::insertAfterName($rows, $field));
+                return $fieldsets;
             }
         }
 
-        $key = array_key_first($rows);
-        $rows[$key] = [...(array)$rows[$key], $field];
+        if ($fieldsets) {
+            $fieldsets[0]->rows(static fn (array $rows): array => [...$rows, $field]);
+        }
 
-        return $rows;
+        return $fieldsets;
     }
 
     /**

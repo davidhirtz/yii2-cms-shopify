@@ -97,21 +97,18 @@ class EntryAdminWidgetsTest extends TestCase
             static function (Event $event) use (&$properties): void {
                 self::assertInstanceOf(EntryActiveForm::class, $event->sender);
 
-                $event->sender->rows(static function (array $rows) use (&$properties): array {
-                    foreach ($rows as $group) {
-                        foreach (is_array($group) ? $group : [$group] as $field) {
-                            if (!$field) {
-                                // A field the entry does not have; `Fieldset` drops these before rendering.
-                                continue;
-                            }
-
-                            $properties[] = $field instanceof Field && $field->property
-                                ? $field->property
-                                : $field::class;
+                $event->sender->rows(static function (array $fieldsets) use (&$properties): array {
+                    foreach ($fieldsets as $fieldset) {
+                        foreach ($fieldset->getRows() as $field) {
+                            $properties[] = match (true) {
+                                $field instanceof Field && (bool)$field->property => $field->property,
+                                is_string($field) => $field,
+                                default => $field::class,
+                            };
                         }
                     }
 
-                    return $rows;
+                    return $fieldsets;
                 });
             }
         );
