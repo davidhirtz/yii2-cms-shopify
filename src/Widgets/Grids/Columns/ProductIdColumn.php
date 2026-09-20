@@ -44,6 +44,7 @@ class ProductIdColumn extends Column
         }
 
         $link = Link::make()
+            ->class('text-truncate')
             ->text($product->name)
             ->href($product->getShopifyAdminUrl());
 
