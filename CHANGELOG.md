@@ -1,40 +1,27 @@
 ## 3.0.0 (in development)
 
-- **`Events\ProductEntrySiteRelationsBuilderEventHandler` is `Events\ProductEntrySiteRelationsEventHandler`**,
-  following the cms rename of `Models\Builders\EntrySiteRelationsBuilder` to
-  `Models\Actions\PreloadEntrySiteRelations` (monorepo issue #136). The handler reads `autoloadVariants` off its
-  own container definition through `self::class`, so a project setting that option renames the key with it:
-
-  ```php
-  'container' => [
-      'definitions' => [
-          ProductEntrySiteRelationsEventHandler::class => ['autoloadVariants' => true],
-      ],
-  ],
-  ```
-
-- `Events\ProductEntrySiteRelationsEventHandler` no longer answers a 500 for an entry whose `product_id`
-  or `variant_id` is empty, which is the default: both were array offsets, and `null` is not a legal one. Its
-  `reset()` also read a relation by reference, which is an `Indirect modification of overloaded property`
-  notice (monorepo issue #129).
-
-- `Bootstrap` places the product field through the fieldset that holds the entry's name field, rather than guessing
-  at the shape of `ActiveForm::$rows`. Behaviour is unchanged; the skeleton normalizes the rows now (monorepo issue
-  #120).
-
-- **`Bootstrap` adds the product field and column to the cms entry admin itself.** A
-  `Widget::EVENT_CONFIGURE` listener puts `Widgets\Forms\Fields\ProductIdSelectField` and
-  `Widgets\Grids\Columns\ProductIdColumn` directly after the entry's name field and name column, so an entry is
-  linked to a product without a project subclassing `EntryActiveForm` and `EntryGridView`. The listener runs after
-  the widget's own defaults and before the caller's `prepare()`, so a project still has the last word
-- `ProductIdSelectField` offers an empty first option: an entry does not have to stand for a product, and it is
-  how one is unlinked again
-- `ProductIdColumn` decides its visibility in a closure rather than in its constructor. It counted the products of
-  the grid's provider before the grid was bound to it, so building the column threw whatever added it
-- `Widgets\Grids\Columns\ProductIdColumn` keeps the products it loaded on the column rather than in a static,
-  and `ProductIdColumn::reset()` is gone with it, as is the `Bootstrap` call that cleared it. The static was keyed
-  to nothing, so a second entry grid in the same request reported the products of the first — and a first grid
-  holding none hid the column for every grid after it
+- Renamed the namespace `davidhirtz\yii2\cms\shopify\` to `Hirtz\Cms\Shopify\` and every directory under `src/` to
+  StudlyCase (`behaviors` → `Behaviors`, `widgets\grids\columns` → `Widgets\Grids\Columns`); requires PHP 8.3,
+  `davidhirtz/yii2-cms` 3.0 and `davidhirtz/yii2-shopify` 3.0
+- Removed `Widgets\Forms\ProductIdFieldBehavior` with `productIdField()`, `getProductIdItems()`,
+  `getTakenProductIds()` and `$productIdPrompt`; `Bootstrap` inserts `Widgets\Forms\Fields\ProductIdSelectField`
+  after the name field of `Hirtz\Cms\Modules\Admin\Widgets\Forms\EntryActiveForm` through
+  `Widget::EVENT_CONFIGURE`, so a project no longer lists `product_id` in its form
+- Replaced `Widgets\Grids\Columns\ProductIdColumn` (a `yii\grid\DataColumn` with `$attribute`,
+  `$validateProductSlug` and a static product cache) with a `Hirtz\Skeleton\Widgets\Grids\Columns\Column` taking
+  the property in its constructor; `Bootstrap` inserts it after the name column of
+  `Hirtz\Cms\Modules\Admin\Widgets\Grids\EntryGridView`, visible only while the page lists a product, and the
+  slug warning is always shown
+- Replaced `Models\Builders\EntrySiteRelationsBuilder` with `Events\ProductEntrySiteRelationsEventHandler`, a
+  listener on `Hirtz\Cms\Models\Actions\PreloadEntrySiteRelations::EVENT_AFTER_LOAD_ENTRIES`; `$autoloadVariants`
+  is now the `autoloadVariants` key of the handler's container definition
+- Removed `Models\Entry::attributeLabels()`; the product field and column take their label from the `shopify`
+  message key `COMMON_PRODUCT`, which replaces `Yii::t('shopify', 'Product')` in `Validators\ProductIdValidator`
+  as well
+- Added `Hirtz\Shopify\Models\Product::AUTH_SHOPIFY_PRODUCT` to the dashboard roles through
+  `DashboardController::addRoles()`
+- Replaced `Migrations\M220506145159CmsShopify` with the fresh-install baseline
+  `Migrations\M260101000600CmsShopifyBaseline`, which cannot be reverted
 
 ## 2.2.2 (Jan 26, 2026)
 
