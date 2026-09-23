@@ -1,4 +1,4 @@
-## 3.0.0 (in development)
+## 3.0.0 (September 23, 2026)
 
 - Renamed the namespace `davidhirtz\yii2\cms\shopify\` to `Hirtz\Cms\Shopify\` and every directory under `src/` to
   StudlyCase (`behaviors` → `Behaviors`, `widgets\grids\columns` → `Widgets\Grids\Columns`); requires PHP 8.3,
