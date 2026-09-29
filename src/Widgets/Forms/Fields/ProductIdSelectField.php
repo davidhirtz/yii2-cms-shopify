@@ -16,7 +16,7 @@ use Yii;
  */
 class ProductIdSelectField extends SelectField
 {
-    public ?string $property = 'product_id';
+    protected ?string $property = 'product_id';
 
     /**
      * An entry does not have to stand for a product, and the empty option is how one is unlinked again.
@@ -64,7 +64,7 @@ class ProductIdSelectField extends SelectField
         return Entry::find()
             ->select('product_id')
             ->where(['IS NOT', 'product_id', null])
-            ->andFilterWhere(['!=', 'id', $this->form->model->id])
+            ->andFilterWhere(['!=', 'id', $this->form->getModel()->id])
             ->column();
     }
 }

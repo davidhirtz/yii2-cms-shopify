@@ -87,7 +87,7 @@ class ProductIdColumn extends Column
     {
         $productIds = [];
 
-        foreach ($this->grid->provider->getModels() as $model) {
+        foreach ($this->grid->getProvider()->getModels() as $model) {
             if ($productId = $model->getAttribute($this->property)) {
                 $productIds[] = $productId;
             }

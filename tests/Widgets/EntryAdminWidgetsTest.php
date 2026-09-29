@@ -101,7 +101,7 @@ class EntryAdminWidgetsTest extends TestCase
                     foreach ($fieldsets as $fieldset) {
                         foreach ($fieldset->getRows() as $field) {
                             $properties[] = match (true) {
-                                $field instanceof Field && (bool)$field->property => $field->property,
+                                $field instanceof Field && (bool)$field->getProperty() => $field->getProperty(),
                                 is_string($field) => $field,
                                 default => $field::class,
                             };
@@ -245,7 +245,7 @@ class EntryAdminWidgetsTest extends TestCase
                 $event->sender->columns(static function (array $current) use (&$columns): array {
                     $columns = array_map(
                         static fn (mixed $column): string => $column instanceof DataColumn
-                            ? (string)$column->property
+                            ? (string)$column->getProperty()
                             : (is_object($column) ? $column::class : (string)$column),
                         $current
                     );

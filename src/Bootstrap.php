@@ -145,7 +145,7 @@ class Bootstrap implements BootstrapInterface
     private static function indexOfName(array $items): ?int
     {
         foreach (array_values($items) as $index => $existing) {
-            if (($existing instanceof DataColumn || $existing instanceof Field) && $existing->property === 'name') {
+            if (($existing instanceof DataColumn || $existing instanceof Field) && $existing->getProperty() === 'name') {
                 return $index;
             }
         }

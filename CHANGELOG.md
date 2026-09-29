@@ -1,3 +1,7 @@
+## Unreleased
+
+- Requires `davidhirtz/yii2-skeleton` `^3.6`, whose widget options are protected
+
 ## 3.0.0 (September 23, 2026)
 
 - Renamed the namespace `davidhirtz\yii2\cms\shopify\` to `Hirtz\Cms\Shopify\` and every directory under `src/` to
