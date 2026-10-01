@@ -51,8 +51,9 @@ class ProductEntryBehavior extends Behavior
                 $entry->status = Entry::STATUS_DISABLED;
             }
 
+            // Unvalidated: an entry that no longer validates must not stay enabled as a page without a product.
             $entry->setAttribute('product_id', null);
-            $entry->update();
+            $entry->update(false, ['status', 'product_id']);
         }
     }
 }
