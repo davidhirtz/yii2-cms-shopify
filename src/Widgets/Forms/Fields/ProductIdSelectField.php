@@ -48,7 +48,7 @@ class ProductIdSelectField extends SelectField
         $items = [];
 
         foreach ($products as $product) {
-            $items[$product->id] = !$product->isEnabled()
+            $items[(int)$product->id] = !$product->isEnabled()
                 ? ('[' . $product->getStatusName() . "] $product->name")
                 : $product->name;
         }
