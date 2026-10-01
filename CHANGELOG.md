@@ -1,3 +1,9 @@
+## Unreleased
+
+- Changed the requirements to `davidhirtz/yii2-cms` `^3.10`, `davidhirtz/yii2-shopify` `^3.1` and
+  `davidhirtz/yii2-skeleton` `^3.8`
+- Fixed deleting a product leaving its entry enabled when the entry no longer validates
+
 ## 3.1.0 (September 29, 2026)
 
 - Requires `davidhirtz/yii2-skeleton` `^3.6`, whose widget options are protected
