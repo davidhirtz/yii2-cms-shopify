@@ -78,7 +78,7 @@ class ProductIdValidatorTest extends TestCase
 
         $entry->product_id = '';
 
-        self::assertTrue($entry->validate());
+        self::assertTrue($entry->validate(), print_r($entry->getErrors(), true));
         self::assertNull($entry->product_id);
     }
 }
