@@ -1,4 +1,4 @@
-## Unreleased
+## 3.2.0 (October 2, 2026)
 
 - Changed the requirements to `davidhirtz/yii2-cms` `^3.10`, `davidhirtz/yii2-shopify` `^3.1` and
   `davidhirtz/yii2-skeleton` `^3.8`
