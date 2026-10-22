@@ -1,4 +1,4 @@
-## Unreleased
+## 3.3.0 (October 22, 2026)
 
 - Changed the `davidhirtz/yii2-shopify` requirement to `^3.7`, which adds the product role to the dashboard itself
 
