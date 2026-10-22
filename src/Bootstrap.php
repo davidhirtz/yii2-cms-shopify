@@ -16,7 +16,6 @@ use Hirtz\Cms\Shopify\Widgets\Forms\Fields\ProductIdSelectField;
 use Hirtz\Cms\Shopify\Widgets\Grids\Columns\ProductIdColumn;
 use Hirtz\Shopify\Models\Product;
 use Hirtz\Skeleton\Helpers\EventHelper;
-use Hirtz\Skeleton\Modules\Admin\Controllers\DashboardController;
 use Hirtz\Skeleton\Web\Application;
 use Hirtz\Skeleton\Widgets\Forms\Fields\Field;
 use Hirtz\Skeleton\Widgets\Grids\Columns\DataColumn;
@@ -51,10 +50,6 @@ class Bootstrap implements BootstrapInterface
         );
 
         $this->addEntryAdminWidgets();
-
-        DashboardController::addRoles(static fn (): array => [
-            Product::AUTH_SHOPIFY_PRODUCT,
-        ]);
 
         $app->setMigrationNamespace('Hirtz\Cms\Shopify\Migrations');
     }
