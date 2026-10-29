@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Hirtz\Cms\Shopify\Behaviors;
 
-use Hirtz\Cms\Bootstrap;
 use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Shopify\Validators\ProductIdValidator;
 use Hirtz\Skeleton\Models\Actions\DuplicateActiveRecord;
@@ -15,9 +14,6 @@ use Yii;
 use yii\base\Behavior;
 
 /**
- * EntryProductBehavior extends {@see Entry} by providing `product_id` validation. This behavior is attached on module
- * bootstrap by {@see Bootstrap}.
- *
  * @extends Behavior<Entry>
  */
 class EntryProductBehavior extends Behavior

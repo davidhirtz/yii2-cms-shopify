@@ -7,16 +7,12 @@ namespace Hirtz\Cms\Shopify\Behaviors;
 use Hirtz\Cms\Models\Entry;
 use Hirtz\Cms\Models\Traits\EntryRelationTrait;
 use Hirtz\Cms\Module;
-use Hirtz\Cms\Shopify\Bootstrap;
 use Hirtz\Shopify\Models\Product;
 use Override;
 use Yii;
 use yii\base\Behavior;
 
 /**
- * ProductEntryBehavior extends {@see Product} by updating related entries on deletion. This behavior is attached on
- * bootstrap by {@see Bootstrap}.
- *
  * @property int|null $entry_id
  * @extends Behavior<Product>
  */

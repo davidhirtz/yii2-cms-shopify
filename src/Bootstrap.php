@@ -55,9 +55,8 @@ class Bootstrap implements BootstrapInterface
     }
 
     /**
-     * The product belongs on the entry's own form and grid, so the bundle adds it rather than leaving every
-     * project to subclass both widgets. `EVENT_CONFIGURE` fires after the widget built its defaults and before
-     * the caller's `prepare()`, so a project still has the last word.
+     * `EVENT_CONFIGURE` fires after the widget's defaults and before the caller's `prepare()`, so a project still has
+     * the last word.
      */
     protected function addEntryAdminWidgets(): void
     {
@@ -79,8 +78,7 @@ class Bootstrap implements BootstrapInterface
     }
 
     /**
-     * The product belongs beside the entry's own name, so the fieldset holding the name field is the one that gets
-     * it — and the first one otherwise, since a project may have replaced the name field with something else.
+     * The fieldset holding the name field, or the first one, since a project may have replaced the name field.
      *
      * @param list<Fieldset> $fieldsets
      * @return list<Fieldset>
@@ -113,9 +111,7 @@ class Bootstrap implements BootstrapInterface
     }
 
     /**
-     * The name is what the product belongs next to, and `Widgets\Traits\PropertyTrait` is the only thing that
-     * identifies a column or a field from outside. Only the two classes that use it are asked: another column may
-     * well declare a `property` of its own, privately.
+     * Only users of `Widgets\Traits\PropertyTrait` are asked, since another column may declare a private `property`.
      *
      * @param array<mixed> $items
      * @return array<mixed>

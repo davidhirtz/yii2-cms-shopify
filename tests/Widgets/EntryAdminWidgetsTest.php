@@ -22,8 +22,7 @@ use Override;
 use Yii;
 
 /**
- * The bundle adds the product field and column to the cms entry admin itself, through `EVENT_CONFIGURE` — a
- * project should not have to subclass `EntryActiveForm` and `EntryGridView` to link an entry to a product.
+ * The bundle adds the product field and column through `EVENT_CONFIGURE`, so no project subclasses the entry widgets.
  */
 class EntryAdminWidgetsTest extends TestCase
 {
@@ -78,9 +77,7 @@ class EntryAdminWidgetsTest extends TestCase
     }
 
     /**
-     * The product names the entry, so it belongs directly after the name rather than at the end of the form.
-     * Read off the form itself, as the column test does: a later listener is handed the rows the bundle's own
-     * already contributed to.
+     * Read off the form itself, since a later listener is handed the rows the bundle's own already contributed to.
      */
     public function testTheFieldFollowsTheNameField(): void
     {
@@ -195,8 +192,7 @@ class EntryAdminWidgetsTest extends TestCase
     }
 
     /**
-     * The products a column loaded are its own memo of the rows its grid holds, never the request's: as a static
-     * they outlived both, and a second grid rendered the first one's products.
+     * A column's products are a memo of its own grid's rows, since a static showed a second grid the first one's.
      */
     public function testASecondGridLoadsItsOwnProducts(): void
     {
@@ -219,8 +215,7 @@ class EntryAdminWidgetsTest extends TestCase
     }
 
     /**
-     * Read off the grid itself rather than the markup: a later listener is handed the columns the bundle's own
-     * already contributed to, which is the contract a project relies on to reorder them.
+     * Read off the grid rather than the markup, since a later listener is handed the columns already contributed.
      */
     public function testTheColumnFollowsTheNameColumn(): void
     {
@@ -280,9 +275,6 @@ class EntryAdminWidgetsTest extends TestCase
         self::assertStringNotContainsString($this->getProductFromFixture('product-1')->name, $html);
     }
 
-    /**
-     * The select of the product field, from its opening tag to its closing one.
-     */
     private function getProductSelect(string $html): string
     {
         $start = strpos($html, 'name="Entry[product_id]"');

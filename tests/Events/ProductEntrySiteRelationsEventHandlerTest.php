@@ -46,9 +46,6 @@ class ProductEntrySiteRelationsEventHandlerTest extends TestCase
         self::assertEquals(1, $product->getRelatedRecords()['variant']->id);
     }
 
-    /**
-     * @return PreloadEntrySiteRelations
-     */
     private function createPreload(): PreloadEntrySiteRelations
     {
         $entry = Entry::findOne(1);

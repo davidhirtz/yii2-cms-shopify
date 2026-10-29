@@ -5,17 +5,12 @@ declare(strict_types=1);
 namespace Hirtz\Cms\Shopify\Validators;
 
 use Hirtz\Cms\Models\Entry;
-use Hirtz\Cms\Shopify\Behaviors\EntryProductBehavior;
 use Hirtz\Shopify\Models\Product;
 use Override;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\validators\Validator;
 
-/**
- * ProductIdValidator validates the entry's `product_id`. The validator is automatically added to the model's validators
- * by {@see EntryProductBehavior}.
- */
 class ProductIdValidator extends Validator
 {
     /** @var string[] */
