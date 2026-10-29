@@ -48,7 +48,7 @@ Message keys of the `shopify` category:
 
 | v2 | v3 |
 |---|---|
-| `Yii::t('shopify', 'Product')` | `Yii::t('shopify', 'COMMON_PRODUCT')` |
+| `Yii::t('shopify', 'Product')` | `Yii::t('shopify', 'PRODUCT_SINGULAR')` |
 
 The permission the bundle registers on the dashboard is `Hirtz\Shopify\Models\Product::AUTH_SHOPIFY_PRODUCT`
 (`shopifyProduct`); the v2 name `shopifyProductUpdate` is renamed by the `davidhirtz/yii2-shopify` upgrade.

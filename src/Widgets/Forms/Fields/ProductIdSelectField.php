@@ -26,7 +26,7 @@ class ProductIdSelectField extends SelectField
     #[Override]
     protected function configure(): void
     {
-        $this->label ??= Yii::t('shopify', 'COMMON_PRODUCT');
+        $this->label ??= Yii::t('shopify', 'PRODUCT_SINGULAR');
         $this->items = $this->items ?: $this->getProductIdItems();
 
         parent::configure();

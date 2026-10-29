@@ -49,7 +49,7 @@ class ProductIdValidator extends Validator
 
         if ($isTaken) {
             $model->addError($attribute, Yii::t('yii', '{attribute} "{value}" has already been taken.', [
-                'attribute' => Yii::t('shopify', 'COMMON_PRODUCT'),
+                'attribute' => Yii::t('shopify', 'PRODUCT_SINGULAR'),
                 'value' => $product->name,
             ]));
         }
